@@ -38,9 +38,6 @@ elif [ $type == SUBYMD ]; then
 elif [ $type == YMDH ]; then
   deletethisdateandolder=$(date -d "$PDY ${cyc} -${KEEPTIME}" +%Y%m%d%H)
   dirstodelete=($(ls -d $directory/$RUN.[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9] | awk "{if (\$1 <= \"$directory/$RUN.$deletethisdateandolder\") print}"))
-elif [ $type == YM ]; then
-  deletethisdateandolder=${deletethisdateandolder::6}
-  dirstodelete=($(ls -d $directory/$RUN.[0-9][0-9][0-9][0-9][0-9][0-9] | awk "{if (\$1 <= \"$directory/$RUN.$deletethisdateandolder\") print}"))
 elif [ $type == SUBYM ]; then
   deletethisdateandolder=${deletethisdateandolder::6}
   dirstodelete=($(ls -d $directory/$RUN/[0-9][0-9][0-9][0-9][0-9][0-9] | awk "{if (\$1 <= \"$directory/$RUN/$deletethisdateandolder\") print}"))
