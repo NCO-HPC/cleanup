@@ -68,7 +68,7 @@ gentracks   | v3.5     |sref                        |ALL     | YMD   |  6days
 gentracks   | v3.5     |ukmet                       |ALL     | YMD   |  6days
 gfs         | v16.2    |enkfgdas                    |ALL     | YMD   |  7days
 gfs         | v16.2    |gdas                        |ALL     | YMD   |  7days
-gfs         | v16.2    |gfs                         |ALL     | YMD   |  7days
+gfs         | v16.2    |gfs                         |ALL     | YMD   | 19days
 gfs_mos     | v5.3     |gfs_mos                     |ALL     | YMD   |  6days
 nsst        | v1.2     |nsst                        |ALL     | YMD   | 12days
 glmp        | v2.4     |glmp                        |ALL     | YMD   |  6days
