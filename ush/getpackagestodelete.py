@@ -55,7 +55,7 @@ for ver_var in ALL_VER_VARS.keys():
   packagename = re.sub("_ver$","",ver_var)
   oldestecfversion = sorted([LooseVersion(vv) for vv in ALL_VER_VARS[ver_var]])[0]
   if not oldestecfversion.vstring.startswith("v"):
-    print(f"WARNING: Found an ecFlow variable named '{packagename}_ver' that has invalid value '{oldestecfversion.vstring}' or not defind at suite level. Wrong value means package {packagename} will not be cleaned up!",file=sys.stderr)
+    print(f"WARNING: The ecFlow variable '{packagename}_ver' has invalid value '{oldestecfversion.vstring}'. Package {package} will not be cleaned up!",file=sys.stderr)
     continue
   existingpackagepaths = glob.glob(f"{PACKAGEROOT}/{packagename}.*/")
   if not existingpackagepaths: print(f"WARNING: variable {ver_var} does not correspond with any existing package in {PACKAGEROOT}",file=sys.stderr)
@@ -64,7 +64,7 @@ for ver_var in ALL_VER_VARS.keys():
     if not re.match("v\d+\.(\d+\.)*\d+[a-z]*",thispackageversion):
       print(f"WARNING: the package name of path {path} is incorrectly formatted, and will never be cleaned up!")
       continue
-    if (str(LooseVersion(thispackageversion))<str(oldestecfversion)) and (thispackageversion not in package_whitelist[packagename]):
+    if (LooseVersion(thispackageversion)<oldestecfversion) and (thispackageversion not in package_whitelist[packagename]):
       oldpackagepaths += [path]
 
 for package in os.listdir(PACKAGEROOT):
