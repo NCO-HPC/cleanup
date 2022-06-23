@@ -1,0 +1,14 @@
+_ENVIR_/mag/v3.20/status 3
+.*_MAG
+.*_PDYp1_.*
+.*_PDY_.*
+.*_PDYm1_.*
+.*_PDYm2_.*
+transfer_A/.*_PDYp1_.*
+transfer_A/.*_PDY_.*
+transfer_A/.*_PDYm1_.*
+transfer_A/.*_PDYm2_.*
+transfer_B/.*_PDYp1_.*
+transfer_B/.*_PDY_.*
+transfer_B/.*_PDYm1_.*
+transfer_B/.*_PDYm2_.*

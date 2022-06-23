@@ -1,0 +1,25 @@
+_ENVIR_/hrrr/v4.1/nwges  3
+hrrrges_sfc/conus/hrrr__PDYp1_.*
+hrrrges_sfc/conus/hrrr__PDY_.*
+hrrrges_sfc/conus/hrrr__PDYm1_.*
+hrrrges_sfc/conus/hrrr__PDYm2_.*
+hrrrges_sfc/alaska/hrrrak__PDYp1_.*
+hrrrges_sfc/alaska/hrrrak__PDY_.*
+hrrrges_sfc/alaska/hrrrak__PDYm1_.*
+hrrrges_sfc/alaska/hrrrak__PDYm2_.*
+hrrrdasges/hrrrdas_d0.__PDYp1_.*
+hrrrdasges/hrrrdas_d0.__PDY_.*
+hrrrdasges/hrrrdas_d0.__PDYm1_.*
+hrrrdasges/hrrrdas_d0.__PDYm2_.*
+hrrrdasges/hrrrdas_small_d0.__PDYp1_.*
+hrrrdasges/hrrrdas_small_d0.__PDY_.*
+hrrrdasges/hrrrdas_small_d0.__PDYm1_.*
+hrrrdasges/hrrrdas_small_d0.__PDYm2_.*
+hrrrdasensp/enspert_d0.__PDYp1_.*
+hrrrdasensp/enspert_d0.__PDY_.*
+hrrrdasensp/enspert_d0.__PDYm1_.*
+hrrrdasbc/wrfbdy_d0.\._PDYp1_.*
+hrrrdasbc/wrfbdy_d0.\._PDY_.*
+hrrrdasbc/wrfbdy_d0.\._PDYm1_.*
+hrrrdasbc/wrfinput_d01__YYYY-MM-DD_.*
+hrrrdasbc/wrfinput_d02__YYYY-MM-DD_.*

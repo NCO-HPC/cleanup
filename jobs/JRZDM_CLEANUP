@@ -1,0 +1,51 @@
+#!/bin/sh
+
+date
+export PS4=' $SECONDS + '
+set -x
+
+export DATA=${DATAROOT:?}/${jobid:?}
+mkdir -p $DATA
+cd $DATA
+
+export SENDECF=${SENDECF:-YES}
+
+####################################
+# Define execution areas
+####################################
+export PARMcleanup=${HOMEcleanup:?}/parm
+
+#########################################
+# Set Variable to Control Cleanup
+#########################################
+export cleanup_com=${cleanup_com:-"YES"}
+
+if [ "$eval" == YES ]; then
+  export clean_envir=eval
+else
+  export clean_envir=$envir
+fi
+
+export MAXTIME=1200
+#########################################
+# Run setpdy and initialize PDY variables
+#########################################
+export cycle=t${cyc}z
+
+setpdy.sh
+. ./PDY
+
+env
+
+# Set which site(s) to clean up:
+export SITELIST=${SITELIST:-"ncorzdm.ncep.noaa.gov ncorzdm-bldr.ncep.noaa.gov"}
+
+#############################################################
+# execute the script
+${HOMEcleanup}/scripts/exrzdm_cleanup.sh
+export err=$?; err_chk
+#############################################################
+
+if [ "${KEEPDATA^^}" != "YES" ]; then
+  rm -rf $DATA
+fi

@@ -1,0 +1,149 @@
+#!/bin/sh
+
+date
+export PS4=' $SECONDS + '
+set -x
+
+export DATA=${DATA:-${DATAROOT:?}/${jobid:?}}
+mkdir -p $DATA
+cd $DATA
+
+env
+
+export SENDECF=${SENDECF:-YES}
+
+####################################
+# Define execution areas
+####################################
+export EXECprod_filemanager=${HOMEprod_filemanager}/exec
+
+####################################
+# Time Variables
+####################################
+export cycle=t${cyc:?}z
+
+#########################################
+# Set Variable to Control Cleanup
+#########################################
+if [ "${envir:?}" = "prod" ]; then
+    SENDCOM=${SENDCOM:-YES}
+    compress_com_prod=${compress_com_prod:-YES}
+    compress_com_para=${compress_com_para:-NO}
+    compress_com_test=${compress_com_test:-NO}
+    compress_com_dev=${compress_com_dev:-NO}
+    compress_com_transfer=${compress_com_transfer:-YES}
+elif [ "$envir" = "para" ]; then
+    SENDCOM=${SENDCOM:-YES}
+    compress_com_prod=${compress_com_prod:-NO}
+    compress_com_para=${compress_com_para:-YES}
+    compress_com_test=${compress_com_test:-YES}
+    compress_com_dev=${compress_com_dev:-NO}
+    compress_com_transfer=${compress_com_transfer:-NO}
+else
+    # test runs are always dry (don't have effect)
+    SENDCOM=NO
+    compress_com_prod=${compress_com_prod:-YES}
+    compress_com_para=${compress_com_para:-NO}
+    compress_com_test=${compress_com_test:-NO}
+    compress_com_dev=${compress_com_dev:-NO}
+    compress_com_transfer=${compress_com_transfer:-YES}
+fi
+
+#########################################
+# Run setpdy and initialize PDY variables
+#########################################
+setpdy.sh 7 0
+. ./PDY
+
+# If the system version of xz is less than 5.2.0, use the version in the package
+# v5.2 or later is required for multithreaded compression
+if [ "$(xz --version | sed 's/^.*[^0-9]\([0-9]*\.[0-9]*\.[0-9]*\).*$/\1\n5.2.0/;q' | sort -V | head -1)" != "5.2.0" ]; then
+    tar_flags="-I ${EXECprod_filemanager}/xz"
+else
+    tar_flags="-J"
+fi
+
+export XZ_OPT="-9 --threads=${THREADS:?} --block-size=1073741824"
+
+declare -a compress_com_environments
+for cleanup_envir in "prod" "para" "test" "dev" "transfer"; do
+    cleanup_envir_enabled=$(eval echo \$compress_com_${cleanup_envir})
+    if [ ${cleanup_envir_enabled^^} = "YES" ]; then
+        compress_com_environments+=($cleanup_envir)
+    fi
+done
+
+export TAR_MAX_ATTEMPTS=3;
+export CLEANANDTRY=${CLEANANDTRY:-YES};
+export maillist="ncep.list.spa-helpdesk@noaa.gov";
+
+for cleanup_envir in "${compress_com_environments[@]}"; do
+    for COM in ${COM_OUTPUT_PATHS:?}; do
+        COMIN=${COM}/output/${cleanup_envir}/${PDYm7}
+        if [ "${SENDCOM^^}" = "YES" ]; then
+            OUTFILE=${COM}/output/${cleanup_envir}/${PDYm7}.tar.xz
+        else
+            OUTFILE=${COM//\//_}_output_${cleanup_envir}_${PDYm7}.tar.xz
+        fi
+  
+        if [ ! -d $COMIN ] || [ -s $OUTFILE ]; then
+            echo "This directory has already been compressed... skipping."
+        else
+            tar_success="false";
+            tar_attempts=0;
+            while [ $tar_success = "false" ]; do
+            echo "tar cf $OUTFILE $tar_flags $COMIN at `date` ($tar_attempts time) " > email_body;
+            tarlog=tar.${cleanup_envir}.${PDYm7}.log;
+            ((tar_attempts++));
+            tar cf $OUTFILE $tar_flags $COMIN > $tarlog 2>&1;
+            export err=$?;  ### err_chk
+            if [ $err != '0' ]; then
+                file=`grep -e "Permission denied" -e " Cannot stat: " $tarlog|awk '{print $2}'|awk -F":" '{print $1}'`;
+                echo "tar $COMIN failed due to the following reason - " | tee -a email_body;
+                cat $tarlog |tee -a email_body;
+                echo  | tee -a email_body;
+                ls -ltrd $file | tee -a email_body;
+                echo  | tee -a email_body;
+                if [ "${CLEANANDTRY^^}" = "YES" ] ; then 
+                   compress_com_environments+=($cleanup_envir);
+                   type=`ls -ltrd $file|awk '{print $1}'|cut -c 1-1`;
+                   if [ "${type}" = "d" ]; then
+                      echo "$file is a directory and try to create it" |tee -a email_body;
+                      ls -ltrd $file >> email_body;
+                      mkdir -p -m 775 $file;
+                   else
+                      echo "$file is a file and move it away" |tee -a email_body;
+                      cp -p $file $DATA/. ;
+                      rm -rf $file;
+                      export KEEPDATA=YES;
+                   fi
+                fi
+                if [ $tar_attempts -gt $TAR_MAX_ATTEMPTS ]; then
+                    tar_success=maybe;
+                    echo "after $tar_attempts time tries and still failed. SPA please investigate and resolve this issue."|tee -a email_body;
+                else
+                    echo "Will try to compress it again."|tee -a email_body;
+                fi
+                cat email_body |mail.py -s "WARNING: $job failed at compressing $COMIN from ${HOSTNAME}" $maillist;                
+            else
+                tar_success=true;
+                if [ "${SENDCOM^^}" = "YES" ]; then
+                    rm -rf $COMIN;
+                fi
+            fi
+            done;
+            if [ $tar_success != "true" ]; then
+                echo "after $tar_attempts time tries and still failed at compressing $COMIN. email sent, continue .... "
+            fi
+        fi
+    done
+done
+
+postmsg "$jlogfile" "$0 completed normally"
+
+if [ "$KEEPDATA" != YES ]; then
+    rm -rf $DATA
+fi
+
+date
+

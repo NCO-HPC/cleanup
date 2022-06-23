@@ -1,0 +1,23 @@
+#PBS -N rzdm_cleanup_%CYC%
+#PBS -q %QUEUE:prod_transfer%
+#PBS -A %PROJ%-%PROJENVIR%
+#PBS -l walltime=03:00:00
+#PBS -l place=shared,select=1:ncpus=1
+#PBS -j oe
+
+model=cleanup
+%include <head.h>
+%include <envir-p1.h>
+
+export cyc=%CYC%
+
+${HOMEcleanup}/jobs/JRZDM_CLEANUP
+
+%include <tail.h>
+
+%manual
+######################################################################
+PURPOSE:  To execute the job that deletes old ncorzdm directories.
+######################################################################
+%end
+

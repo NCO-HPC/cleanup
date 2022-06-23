@@ -1,0 +1,24 @@
+#PBS -N ops_cleanup_%CYC%
+#PBS -A %PROJ%-%PROJENVIR%
+#PBS -q %QUEUE:prod_shared%
+#PBS -l walltime=16:00:00
+#PBS -l place=shared,select=1:ncpus=8:prepost=true:mem=24GB
+#PBS -j oe
+
+model=cleanup
+%include <head.h>
+%include <envir-p1.h>
+
+module load intel/$intel_ver
+module load python/$python_ver
+
+export cyc=%CYC%
+
+${HOMEcleanup}/jobs/JOPS_CLEANUP
+
+%include <tail.h>
+
+%manual
+Purpose: Cleans up com, dcom, tmp, and packages directories.
+%end
+

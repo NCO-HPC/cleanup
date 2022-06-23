@@ -1,0 +1,62 @@
+#!/bin/bash
+
+date
+export PS4=' $SECONDS + '
+set -x
+
+export DATA=${DATA:-${DATAROOT:?}/${jobid:-$(basename $ECF_NAME).$ECF_RID}}
+mkdir -p $DATA
+cd $DATA
+
+export SENDECF=${SENDECF:-YES}
+# DCOMROOT must be set here, not from prod_envir, so that it is based on $envir:
+export DCOMROOT=/lfs/h1/ops/${envir}/dcom
+export OUTPUTROOT=${OUTPUTROOT:-$OPSROOT/output}
+
+####################################
+# Define execution areas
+####################################
+export USHcleanup=${HOMEcleanup:?}/ush
+export PARMcleanup=${HOMEcleanup}/parm
+
+####################################
+# Time Variables
+####################################
+export cycle=t${cyc:?}z
+
+#########################################
+# Set Variable to Control Cleanup
+#########################################
+export cleanup_com=${cleanup_com:-YES}
+export cleanup_dcom=${cleanup_dcom:-YES}
+export thin_com=${thin_com:-YES}
+export thin_tmp=${thin_tmp:-YES}
+export cleanup_packages=${cleanup_packages:-YES}
+export cleanup_output=${cleanup_output:-YES}
+
+#########################################
+# Run setpdy and initialize PDY variables
+#########################################
+setpdy.sh 13 1
+. ./PDY
+
+# Ensure that the job is not run with a PDY in the future. Normally it will be run
+# at around 2335Z with a PDY of the date that is about to begin.
+if [ "$PDYm1" -gt $(date +%Y%m%d) ]; then
+    err_exit "This script cannot be run with a PDY more than one day into the future."
+fi
+
+env
+#############################################################
+# execute the script
+${HOMEcleanup}/scripts/exops_cleanup.sh
+export err=$?; err_chk
+#############################################################
+
+postmsg "$jlogfile" "$0 completed normally"
+
+if [ "${KEEPDATA^^}" != "YES" ]; then
+  rm -rf $DATA
+fi
+
+date
