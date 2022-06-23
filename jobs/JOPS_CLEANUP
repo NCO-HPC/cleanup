@@ -20,12 +20,6 @@ export USHcleanup=${HOMEcleanup:?}/ush
 export PARMcleanup=${HOMEcleanup}/parm
 
 ####################################
-# MAIL LISTS
-####################################
-export MAILTO=${MAILTO:-nco.spa@noaa.gov}
-export MAILCC=${MAILCC:-nco.dataflow@noaa.gov}
-
-####################################
 # Time Variables
 ####################################
 export cycle=t${cyc:?}z
