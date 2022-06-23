@@ -20,7 +20,11 @@ export PARMcleanup=${HOMEcleanup:?}/parm
 #########################################
 export cleanup_com=${cleanup_com:-"YES"}
 
-export clean_envir=$envir
+if [ "$eval" == YES ]; then
+  export clean_envir=eval
+else
+  export clean_envir=$envir
+fi
 
 export MAXTIME=1200
 #########################################
@@ -38,15 +42,7 @@ export SITELIST=${SITELIST:-"ncorzdm.ncep.noaa.gov ncorzdm-bldr.ncep.noaa.gov"}
 
 #############################################################
 # execute the script
-if [ $envir != para ]; then
-  ${HOMEcleanup}/scripts/exrzdm_cleanup.sh
-else
-  for  cenvir in para eval
-  do
-    export clean_envir=$cenvir
-    ${HOMEcleanup}/scripts/exrzdm_cleanup.sh
-  done
-fi
+${HOMEcleanup}/scripts/exrzdm_cleanup.sh
 export err=$?; err_chk
 #############################################################
 
