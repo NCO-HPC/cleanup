@@ -11,7 +11,6 @@ model=cleanup
 
 module load intel/$intel_ver
 module load python/$python_ver
-module load util_shared/$util_shared_ver
 
 export cyc=%CYC%
 
