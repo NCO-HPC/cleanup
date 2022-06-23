@@ -1,0 +1,27 @@
+_ENVIR_/gefs/v12.2/gefs 10
+- /??/wave/station/***
+- /??/wave/gridded/***
++ *
+
+_ENVIR_/gefs/v12.2/gefs 7
+- /??/chem/***
++ *
+
+_ENVIR_/gefs/v12.2/gefs 5
+- /??/wave/rundata/***
+- /??/wave/gempak/***
+- /??/wave/restart/***
++ *
+
+_ENVIR_/gefs/v12.2/gefs 4
+- /??/atmos/bufr/***
+- /??/atmos/cfssst/***
+- /??/atmos/gempak/***
+- /??/atmos/init/***
+- /??/atmos/misc/***
+- /??/atmos/pgrb2p5/***
+- /??/atmos/pgrb22p5/***
+- /??/atmos/pgrb2bp5/***
+- /??/atmos/sfcsig/***
+- /??/atmos/wmo/***
++ *

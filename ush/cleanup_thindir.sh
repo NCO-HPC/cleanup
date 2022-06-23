@@ -1,11 +1,9 @@
 #!/bin/sh
 
 # v2.1.1  Kit Menlove    2018-05-02
-# Updated Arash Bigdeli 2022-10-19 , thin_dir_base is now an input
 
-# usage: cleanup_thindir.sh $thin_list_file $thin_dir_base
+# usage: cleanup_thindir.sh $cleanup_envir $thin_list_file
 thin_list_file=${1:?}
-thin_dir_base=${2:?}
 
 if [ ! -s "${thin_list_file}" ]; then
     err_exit "Thinning list $thin_list_file does not exist"
@@ -47,10 +45,9 @@ for dirparms in ./thindirparms??; do
     echo -n "   Directory Specifier and Days to Keep: "
     head -1 $dirparms
 
-#AB    read thin_dir_base keepdays < $dirparms
-    read dummy_thin_dir_base keepdays < $dirparms
+    read thin_dir_base keepdays < $dirparms
 
-#AB    thin_dir_base=$(compath.py ${thin_dir_base})
+    thin_dir_base=$(compath.py ${thin_dir_base})
 
     # Remove the current PDY from the path if it is present at the end of $thin_dir_base
     thin_dir_base=${thin_dir_base%.$PDY}
