@@ -60,17 +60,12 @@ echo -e "com/ cleanup complete\n"
 ################################################################################
 if [ $thin_com == YES ]; then # SENDCOM check is in cleanup_thindir.sh
     echo "Thin com/ directories..."
-#    export pgm=${USHcleanup:?}/cleanup_thindir.sh
+    export pgm=${USHcleanup:?}/cleanup_thindir.sh
     for thinfile in ${PARMcleanup}/cleanup_thin_*.list; do
         if [ -s $thinfile ]; then
             echo "Processing thinfile '$thinfile'"
             mkdir $(basename $thinfile)
             cd $(basename $thinfile)
-	    if [[ "$thinfile" =~ _keep.list ]]; then  # use rm instead of rsync
-              export pgm=${USHcleanup:?}/cleanup_thindir_rmfiles.sh
-	    else 
-	      export pgm=${USHcleanup:?}/cleanup_thindir.sh
-	    fi
             $pgm $thinfile
             export err=$? ; err_chk "$pgm $thinfile did not complete successfully"
             cd ..

@@ -1,0 +1,20 @@
+suite prod
+  family primary
+    family 00
+      family cleanup
+      edit PROJ NCO
+      family v1.0
+        defstatus complete
+        edit PACKAGEHOME /lfs/h1/ops/%ENVIR%/packages/cleanup.%cleanup_ver%
+        task jops_cleanup
+          defstatus complete
+          time 00:00
+        task jrzdm_cleanup
+          defstatus complete
+          time 00:00
+          edit QUEUE prod_transfer
+      endfamily
+      endfamily
+    endfamily
+  endfamily
+endsuite
