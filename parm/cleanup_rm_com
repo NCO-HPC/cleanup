@@ -70,6 +70,9 @@ gentracks   | v3.5     |ukmet                       |ALL     | YMD   |  6days
 gfs         | v16.2    |enkfgdas                    |ALL     | YMD   |  7days
 gfs         | v16.2    |gdas                        |ALL     | YMD   |  7days
 gfs         | v16.2    |gfs                         |ALL     | YMD   | 19days
+gfs         | v16.3    |enkfgdas                    |ALL     | YMD   |  7days
+gfs         | v16.3    |gdas                        |ALL     | YMD   |  7days
+gfs         | v16.3    |gfs                         |ALL     | YMD   | 19days
 gfs_mos     | v5.3     |gfs_mos                     |ALL     | YMD   |  6days
 nsst        | v1.2     |nsst                        |ALL     | YMD   | 12days
 glmp        | v2.4     |glmp                        |ALL     | YMD   |  6days
@@ -246,6 +249,26 @@ obsproc     | v1.0     |sdm_rtdm/nam/obcount_30day/nam  |ALL     | YMD   | 33day
 obsproc     | v1.0     |sdm_rtdm/rap/obcount_30day/rap  |ALL     | YMD   | 33days
 obsproc     | v1.0     |sdm_rtdm/rtma/obcount_30day/rtma|ALL     | YMD   | 33days
 obsproc     | v1.0     |sdm_rtdm/urma/obcount_30day/urma|ALL     | YMD   | 33days
+obsproc     | v1.1     |cdas                        |ALL     | YMD   |  7days
+obsproc     | v1.1     |dump                        |ALL     | YMD   |  7days
+obsproc     | v1.1     |gdas                        |ALL     | YMD   |  7days
+obsproc     | v1.1     |gfs                         |ALL     | YMD   |  7days
+obsproc     | v1.1     |hourly                      |ALL     | YMD   |  7days
+obsproc     | v1.1     |mods                        |ALL     | YMD   |  7days
+obsproc     | v1.1     |nam                         |ALL     | YMD   |  7days
+obsproc     | v1.1     |rap                         |ALL     | YMD   |  7days
+obsproc     | v1.1     |rap_e                       |ALL     | YMD   |  7days
+obsproc     | v1.1     |rap_p                       |ALL     | YMD   |  7days
+obsproc     | v1.1     |rtma                        |ALL     | YMD   |  7days
+obsproc     | v1.1     |rtma_ru                     |ALL     | YMD   |  7days
+obsproc     | v1.1     |urma                        |ALL     | YMD   |  7days
+obsproc     | v1.1     |sdm_rtdm/dump/obcount_30day/dump|ALL     | YMD   | 33days
+obsproc     | v1.1     |sdm_rtdm/gfs/obcount_30day/gdas |ALL     | YMD   | 33days
+obsproc     | v1.1     |sdm_rtdm/gfs/obcount_30day/gfs  |ALL     | YMD   | 33days
+obsproc     | v1.1     |sdm_rtdm/nam/obcount_30day/nam  |ALL     | YMD   | 33days
+obsproc     | v1.1     |sdm_rtdm/rap/obcount_30day/rap  |ALL     | YMD   | 33days
+obsproc     | v1.1     |sdm_rtdm/rtma/obcount_30day/rtma|ALL     | YMD   | 33days
+obsproc     | v1.1     |sdm_rtdm/urma/obcount_30day/urma|ALL     | YMD   | 33days
 seaice_drift| v4.1     |seaice_drift                |ALL     | YMD   |  7days
 seaice_analysis| v4.5  |seaice_analysis             |ALL     | YMD   |  7days
 pcpanl      | v4.1     |pcpanl                      |ALL     | YMD   | 15days
