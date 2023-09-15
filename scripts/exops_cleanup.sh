@@ -16,11 +16,14 @@ postmsg "$jlogfile" "$0 has begun"
 # 1.  Clean com/ directories
 ################################################################################
 if [ $cleanup_com == YES ]; then
+    date
     echo "Clean com/ directories"
     sed -e '/^\s*\#/d' -e '/^\s*$/d' -e 's/ //g' ${PARMcleanup:?}/cleanup_rm_com > cleanup_rm_com
     export pgm=${USHcleanup:?}/cleanup_rmdir.sh # SENDCOM check is in cleanup_rmdir.sh
     export IFS="|"
-    while read NET SHORTVER RUN COMFS TYPE KEEPTIME ; do
+    while read NET DUMMYSHORTVER RUN COMFS TYPE KEEPTIME ; do
+	    SHORTVER=$(get2dver.py $NET)
+#	    SHORTVER=$(python ${USHcleanup}/get2dver.py $NET)
         echo
         if [ "${COMFS,,}" = "compath" ]; then
             COM=$(compath.py --envir=$envir $NET/$SHORTVER/$RUN)
@@ -37,13 +40,17 @@ if [ $cleanup_com == YES ]; then
         echo " * NET=$NET RUN=$RUN MODELCOMROOT=$MODELCOMROOT KEEPTIME=$KEEPTIME TYPE=$TYPE"
     
         for comroot in $MODELCOMROOT; do
-            if [[ ! $comroot =~ "/$envir/" ]]; then err_exit "comroot $comroot does not contain envir $envir (NET=$NET RUN=$RUN)" ; fi
-            directory=$comroot/$NET/$SHORTVER
-            echo "Cleaning up $directory/$RUN"
-            ${pgm:?} ${directory:?} ${RUN:?} ${KEEPTIME:?} ${TYPE:?}
-            if [ $? -ne 0 ]; then
-                err_exit "Command '$pgm $directory $RUN $KEEPTIME $TYPE' did not complete successfully"
-            fi
+            version_list=$(ls $comroot/$NET | awk -F"/" '{print $NF}')
+            while read -r veri; do
+            	if [[ ! $comroot =~ "/$envir/" ]]; then err_exit "comroot $comroot does not contain envir $envir (NET=$NET RUN=$RUN)" ; fi
+            	directory=$comroot/$NET/$veri
+            	echo "Cleaning up $directory/$RUN"
+            	echo ${pgm:?} ${directory:?} ${RUN:?} ${KEEPTIME:?} ${TYPE:?}
+            	${pgm:?} ${directory:?} ${RUN:?} ${KEEPTIME:?} ${TYPE:?}
+            	if [ $? -ne 0 ]; then
+            	    err_exit "Command '$pgm $directory $RUN $KEEPTIME $TYPE' did not complete successfully"
+            	fi
+           done <<< "$version_list"
         done
     done < cleanup_rm_com
     unset IFS
@@ -51,7 +58,7 @@ fi
 # Check for files not owned by production or para users/groups:
 badfiles=$(find /lfs/h1/ops/${envir}/com -maxdepth 3 \( ! \( -user ops.prod -o -user ops.para \) -o ! \( -group prod -o -group para -o -group rstprod \) \))
 if [ ! -z $badfiles ]; then
-  echo -e "WARNING: The following files have illegal owners/groups:\n$badfiles" | mail.py -s "$envir cleanup: illegal com file ownership" nco.spa@noaa.gov
+  echo -e "WARNING: The following files have illegal owners/groups:\n$badfiles" | mail.py -s "$envir cleanup: illegal com file ownership" $MAILTO
 fi
 echo -e "com/ cleanup complete\n"
 
@@ -59,20 +66,37 @@ echo -e "com/ cleanup complete\n"
 # 2.  Thin com/ directories
 ################################################################################
 if [ $thin_com == YES ]; then # SENDCOM check is in cleanup_thindir.sh
+    date
     echo "Thin com/ directories..."
-#    export pgm=${USHcleanup:?}/cleanup_thindir.sh
     for thinfile in ${PARMcleanup}/cleanup_thin_*.list; do
         if [ -s $thinfile ]; then
-            echo "Processing thinfile '$thinfile'"
-            mkdir $(basename $thinfile)
-            cd $(basename $thinfile)
-	    if [[ "$thinfile" =~ _keep.list ]]; then  # use rm instead of rsync
-              export pgm=${USHcleanup:?}/cleanup_thindir_rmfiles.sh
-	    else 
-	      export pgm=${USHcleanup:?}/cleanup_thindir.sh
-	    fi
-            $pgm $thinfile
-            export err=$? ; err_chk "$pgm $thinfile did not complete successfully"
+	    read -r NET DUMMYSHORTVER RUN < <(awk -F'[/ ]' '{NR=1;print $2,$3,$4}' $thinfile)
+	    SHORTVER=$(get2dver.py $NET)
+#	    SHORTVER=$(python ${USHcleanup}/get2dver.py $NET)
+	    echo NET=$NET SHORTVER=$SHORTVER RUN=$RUN
+            COM=$(compath.py --envir=$envir $NET/$SHORTVER/$RUN)
+	    echo COM=$COM
+            MODELCOMROOT=${COM%/$NET/$SHORTVER/$RUN}
+	    echo MODELCOMROOT=$MODELCOMROOT
+            version_list=$(ls $MODELCOMROOT/$NET | awk -F"/" '{print $NF}')
+	    echo version_list=$version_list
+            echo "Finding other model versions of thinfile '$thinfile'"
+	    mkdir $(basename $thinfile)
+	    cd $(basename $thinfile)
+	    echo $thinfile
+            while read -r veri; do
+	      v_thinfile=${veri}_$(basename $thinfile)
+	      sed "s,$SHORTVER,$veri,g" $thinfile > $v_thinfile
+	      if [[ "$thinfile" =~ _keep.list ]]; then  # use rm instead of rsync
+                export pgm=${USHcleanup:?}/cleanup_thindir_rmfiles.sh
+	      else 
+	        export pgm=${USHcleanup:?}/cleanup_thindir.sh
+	      fi
+              echo "Proccessing the version based  '$v_thinfile'"
+              echo $pgm $v_thinfile $COM
+              $pgm $v_thinfile $COM
+              export err=$? ; err_chk "$pgm $thinfile did not complete successfully"
+            done <<< "$version_list"
             cd ..
         fi
     done
@@ -84,6 +108,7 @@ fi
 #    files added via 'cp -p'.
 ################################################################################
 if [[ "${thin_tmp^^}" == YES && "$SENDCOM" == YES ]]; then
+    date
     echo "Thinning tmp (DATAROOT=${DATAROOT})"
     find ${DATAROOT?"DATAROOT not set"}/* -ctime +1 > thin_tmp_list.$jobid
     for file in $(cat thin_tmp_list.$jobid); do
@@ -96,6 +121,7 @@ fi
 #########################################################################
 
 if [[ ${DCOMROOT:?} =~ /$envir/ && "$cleanup_dcom" == YES ]]; then
+    date
     echo "Cleaning dcom (DCOMROOT=$DCOMROOT)"
     # SENDCOM check is in cleanup_rmdir.sh
     echo "Cleaning YYYYMMDD dcom subdirectories"
@@ -108,10 +134,10 @@ if [[ ${DCOMROOT:?} =~ /$envir/ && "$cleanup_dcom" == YES ]]; then
     nwstraydirs=$(find ${DCOMROOT} -maxdepth 1 -type d \( -user ops.prod -o -user ops.para \) -regextype posix-egrep -regex '.*/[[:digit:]]+$' \( ! -regex '.*/20[[:digit:]]{4}$' -a ! -regex '.*/20[[:digit:]]{6}$' \))
     dfstraydirs=$(find ${DCOMROOT} -maxdepth 1 -type d \( -user dfprod -o -user dfpara \) -regextype posix-egrep -regex '.*/[[:digit:]]+$' \( ! -regex '.*/20[[:digit:]]{4}$' -a ! -regex '.*/20[[:digit:]]{6}$' \))
     if [[ ! -z $nwstraydirs ]]; then
-      echo -e "The following directories were found in ${DCOMROOT}:\n$nwstraydirs"  | mail.py -s "$envir cleanup: stray DCOM directories (ops)" nco.spa@noaa.gov
+      echo -e "The following directories were found in ${DCOMROOT}:\n$nwstraydirs"  | mail.py -s "$envir cleanup: stray DCOM directories (ops)" $MAILTO
     fi
     if [[ ! -z $dfstraydirs ]]; then
-      echo -e "The following directories were found in ${DCOMROOT}:\n$dfstraydirs"  | mail.py -s "$envir cleanup: stray DCOM directories (df)" nco.spa@noaa.gov -c nco.dataflow@noaa.gov
+      echo -e "The following directories were found in ${DCOMROOT}:\n$dfstraydirs"  | mail.py -s "$envir cleanup: stray DCOM directories (df)" $MAILTO -c $MAILCC
     fi
 elif [ "$cleanup_dcom" == YES ]; then
     err_exit "dcom was not cleaned due to environment mismatch between ${DCOMROOT} and ${envir}"
@@ -121,12 +147,11 @@ fi
 # 5. Clean packages/
 #########################################################################
 if [ $cleanup_packages == YES ]; then
+    date
     echo "Cleaning packages/ (PACKAGEROOT=$PACKAGEROOT)"
     $USHcleanup/getpackagestodelete.py ${PACKAGEROOT:-/lfs/h1/ops/$envir/packages} > $DATA/packagepathstodelete 2> $DATA/packagewarnings
     export err=$? ; pgm=getpackagestodelete.py err_chk "getpackagestodelete.py error"
     if [ $(grep -c . $DATA/packagewarnings) -gt 0 ]; then
-      # echo -e "\nThe following warnings were encountered in package cleanup for PACKAGEROOT=$PACKAGEROOT envir=$envir PDY=$PDY PBS_JOBID=$PBS_JOBID" >> $DATA/packagewarnings
-      # mail.py -s "$envir cleanup: package warnings ($jobid)" nco.spa@noaa.gov < <(tac $DATA/packagewarnings)
         sed -i "1 iThe following warnings were encountered in package cleanup for PACKAGEROOT=$PACKAGEROOT envir=$envir PDY=$PDY PBS_JOBID=$PBS_JOBID\n" $DATA/packagewarnings
     fi
     if [ $(grep -c . $DATA/packagepathstodelete) -gt 0 ]; then
@@ -145,7 +170,7 @@ if [ $cleanup_packages == YES ]; then
         fi
     done
     if [ $(grep -c . $DATA/packagewarnings) -gt 0 ]; then
-        mail.py -s "$envir cleanup: package warnings ($jobid)" nco.spa@noaa.gov < $DATA/packagewarnings
+        mail.py -s "$envir cleanup: package warnings ($jobid)" $MAILTO < $DATA/packagewarnings
     fi
 fi
 
@@ -157,6 +182,7 @@ if [[ $SENDCOM != YES || $cleanup_output != YES ]]; then
     exit 0
 fi
 
+date
 echo "Cleaning $OUTPUTROOT"
 set -x
 oldestdatetokeep=$PDYm7
