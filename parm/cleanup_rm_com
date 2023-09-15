@@ -100,6 +100,9 @@ hysplit     | _VER_     |canned_wfo                  |ALL     | YMD   |  8days
 hysplit     | _VER_     |dustcs                      |ALL     | YMD   |  8days
 hysplit     | _VER_     |hysplit                     |ALL     | YMD   |  9days
 hysplit     | _VER_     |traj                        |ALL     | YMD   |  8days
+hysplit     | _VER_     |sdm                         |ALL     | SUBYMD|  9days
+hysplit     | _VER_     |sdm/wfo                     |ALL     | SUBYMD|  9days
+hysplit     | _VER_     |restrict                    |ALL     | FIXED |  9days
 ifi         | _VER_     |ifi                         |ALL     | YMD   |  5days
 cip         | _VER_     |cip                         |ALL     | YMD   |  5days
 jma         | _VER_     |jma                         |ALL     | YMD   |  7days
