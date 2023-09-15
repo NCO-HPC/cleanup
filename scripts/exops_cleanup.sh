@@ -37,13 +37,16 @@ if [ $cleanup_com == YES ]; then
         echo " * NET=$NET RUN=$RUN MODELCOMROOT=$MODELCOMROOT KEEPTIME=$KEEPTIME TYPE=$TYPE"
     
         for comroot in $MODELCOMROOT; do
-            if [[ ! $comroot =~ "/$envir/" ]]; then err_exit "comroot $comroot does not contain envir $envir (NET=$NET RUN=$RUN)" ; fi
-            directory=$comroot/$NET/$SHORTVER
-            echo "Cleaning up $directory/$RUN"
-            ${pgm:?} ${directory:?} ${RUN:?} ${KEEPTIME:?} ${TYPE:?}
-            if [ $? -ne 0 ]; then
-                err_exit "Command '$pgm $directory $RUN $KEEPTIME $TYPE' did not complete successfully"
-            fi
+            version_list=$(ls $comroot/$NET | awk -F"/" '{print $NF}')
+            while read -r veri; do
+            	if [[ ! $comroot =~ "/$envir/" ]]; then err_exit "comroot $comroot does not contain envir $envir (NET=$NET RUN=$RUN)" ; fi
+            	directory=$comroot/$NET/$veri
+            	echo "Cleaning up $directory/$RUN"
+            	${pgm:?} ${directory:?} ${RUN:?} ${KEEPTIME:?} ${TYPE:?}
+            	if [ $? -ne 0 ]; then
+            	    err_exit "Command '$pgm $directory $RUN $KEEPTIME $TYPE' did not complete successfully"
+            	fi
+           done <<< "$version_list"
         done
     done < cleanup_rm_com
     unset IFS
