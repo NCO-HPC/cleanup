@@ -135,6 +135,7 @@ mag         | _VER_    |gifs/rtma                   |ALL     | SUBYMD|  3days
 mag         | _VER_    |gifs/skewt                  |ALL     | SUBYMD|  3days
 mag         | _VER_    |gifs/sref                   |ALL     | SUBYMD|  3days
 mag         | _VER_    |gifs/sref-cluster           |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/stofs                  |ALL     | SUBYMD|  3days
 mag         | _VER_    |gifs/storm-tracks           |ALL     | SUBYMD|  3days
 mag         | _VER_    |gifs/uair                   |ALL     | SUBYMD|  3days
 mag         | _VER_    |mag                         |ALL     | YMD   | 15days

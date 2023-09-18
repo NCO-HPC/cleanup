@@ -74,6 +74,7 @@ if [ $thin_com == YES ]; then # SENDCOM check is in cleanup_thindir.sh
 	    SHORTVER=$(get2dver.py $NET)
 #	    SHORTVER=$(python ${USHcleanup}/get2dver.py $NET)
 	    echo NET=$NET SHORTVER=$SHORTVER RUN=$RUN
+	    echo "setting com to : compath.py --envir=$envir $NET/$SHORTVER/$RUN"
             COM=$(compath.py --envir=$envir $NET/$SHORTVER/$RUN)
 	    echo COM=$COM
             MODELCOMROOT=${COM%/$NET/$SHORTVER/$RUN}
