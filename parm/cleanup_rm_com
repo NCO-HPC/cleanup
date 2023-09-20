@@ -334,5 +334,6 @@ wave_nfcens | _VER_     |nfcens                      |ALL     | YMD   | 11days
 wfs         | _VER_     |wdas                        |ALL     | YMD   |  3days
 wfs         | _VER_     |wfs                         |ALL     | YMD   |  3days
 wsa_enlil   | _VER_     |wsa_enlil                   |ALL     | YMD   |  7days
+wsa_enlil   | _VER_     |wsa_enlil                   |ALL     | FIXED | 40days
 wsr         | _VER_     |wsr                         |ALL     | YMD   |  7days
 marine34    | _VER_     |marine34                    |ALL     | YM    | 63days
