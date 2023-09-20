@@ -15,6 +15,8 @@
 #  -SUBYM: Subdirectories of specified directory have names following YYYYMM
 #          format. Selection for deletion is based on the date in the name.
 #  -YMDH: Like YMD, but with NET/RUN.YYYYMMDDHH format.
+#  -YM: Directory to be cleaned follows RUN.YYYYMM format. Selection for 
+#       deletion is based on the date in the name.
 #
 # TIME TO KEEP column requires units. Units can be any that are compatible
 # with the system 'date' command.
@@ -333,3 +335,4 @@ wfs         | _VER_     |wdas                        |ALL     | YMD   |  3days
 wfs         | _VER_     |wfs                         |ALL     | YMD   |  3days
 wsa_enlil   | _VER_     |wsa_enlil                   |ALL     | YMD   |  7days
 wsr         | _VER_     |wsr                         |ALL     | YMD   |  7days
+marine34    | _VER_     |marine34                    |ALL     | YM    | 63days
