@@ -41,4 +41,4 @@ nco_mag    |${clean_envir}_data/estofs        | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/firewx        | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/href          | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/ice-drift     | 2 | 2 | 2 | 2 | 2 | 2 |
-hysplit    |htdocs/${clean_envir}             | 181 | 181 | 10 | 10 | 10 | 10 | 366 | 366 |
+
