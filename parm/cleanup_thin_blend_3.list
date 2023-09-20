@@ -1,6 +1,11 @@
-_ENVIR_/blend/v4.0/blend 2
+_ENVIR_/blend/_VER_/blend 2
 - /??/modeldata/*arch*
 - /??/modeldata/*allmodels*
 - /wmo/***
 - /??/update/*allmodels*
 - /??/fcst/*allmodels*
+- /??/fcst/blend.t*z.model_qmd_fcst.precip*.f*.ak.3p0.nc
+- /??/fcst/blend.t*z.model_qmd_fcst.precip*.f*.co.2p5.nc
+- /??/fcst/blend.t*z.model_qmd_fcst.precip*.f*.hi.2p5.nc
+- /??/fcst/blend.t*z.model_qmd_fcst.precip*.f*.oc.10p0.nc
+- /??/fcst/blend.t*z.model_qmd_fcst.precip*.f*.pr.1p25.nc
