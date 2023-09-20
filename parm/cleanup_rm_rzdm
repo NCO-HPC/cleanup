@@ -7,6 +7,7 @@
 #----------|------------------------|---|---|---|---|---|---|----------|
 nco_mag    |${clean_envir}_data/gefs-mean-sprd| 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/gefs-spag     | 2 | 2 | 2 | 2 | 2 | 2 |
+nco_mag    |${clean_envir}_data/gefs-wave     | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/gfs           | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/gfs-snd       | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/gfs-wave      | 2 | 2 | 2 | 2 | 2 | 2 |

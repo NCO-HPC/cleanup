@@ -1,0 +1,15 @@
+cleanup_thin_$model.list files use the command
+' rsync -v --recursive --delete-excluded --exclude-from=./filterrules /$model.YYYYMMDD /$model.YYYYMMDD '
+where 'filterrules' are the lines specified in the .list file
+
+--- cleanup_thin_$model.list template ---
+_ENVIR_/$NET/_VER_/$RUN $n 
+# $NET - model name
+# $RUN - subdirectory to clean. (adds $RUN.YYYYMMDD automatically)
+# $n is the number of days when cleanup will start trimming
+- /dir/file # gets deleted by adding to rsync's --exclude-from list
++ /dir/file # using '+' specifies what to keep
+- /dir/***  # match both directory and everything in the directory
+- /??/file  # ? is character wildcard
++ *         # keep everything not specified by -
+- *         # delete everything not specified by +

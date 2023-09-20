@@ -15,7 +15,7 @@
 #  -SUBYM: Subdirectories of specified directory have names following YYYYMM
 #          format. Selection for deletion is based on the date in the name.
 #  -YMDH: Like YMD, but with NET/RUN.YYYYMMDDHH format.
-#  -YM: Directory to be cleaned follows RUN.YYYYMM format. Selection for 
+#  -YM: Directory to be cleaned follows RUN.YYYYMM format. Selection for
 #       deletion is based on the date in the name.
 #
 # TIME TO KEEP column requires units. Units can be any that are compatible
@@ -51,6 +51,7 @@ ens_tracker | _VER_     |fens                        |ALL     | YMD   |  6days
 ens_tracker | _VER_     |gefs                        |ALL     | YMD   |  6days
 ens_tracker | _VER_     |gfs                         |ALL     | YMD   |  6days
 ens_tracker | _VER_     |ukmet                       |ALL     | YMD   |  6days
+epoch       | _VER_     |epoch                       |ALL     | YMD   | 30days
 estofs      | _VER_     |estofs                      |ALL     | YMD   |  6days
 stofs       | _VER_     |stofs_2d_glo                |ALL     | YMD   |  6days
 stofs       | _VER_     |stofs_3d_atl                |ALL     | YMD   |  6days
@@ -111,22 +112,22 @@ cip         | _VER_     |cip                         |ALL     | YMD   |  5days
 jma         | _VER_     |jma                         |ALL     | YMD   |  7days
 lmp         | _VER_     |lmp                         |ALL     | YMD   |  6days
 madis       | _VER_     |madis                       |ALL     | YMD   |  3days
-mag         | _VER_    |gifs/estofs                 |ALL     | SUBYMD|  3days
 mag         | _VER_    |gifs/firewx                 |ALL     | SUBYMD|  3days
 mag         | _VER_    |gifs/gefs-mean-sprd         |ALL     | SUBYMD|  3days
 mag         | _VER_    |gifs/gefs-spag              |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/gefs-wave              |ALL     | SUBYMD|  3days
 mag         | _VER_    |gifs/gfs                    |ALL     | SUBYMD|  3days
 mag         | _VER_    |gifs/gfs-snd                |ALL     | SUBYMD|  3days
 mag         | _VER_    |gifs/gfs-wave               |ALL     | SUBYMD|  3days
-mag         | _VER_    |gifs/hmon-full              |ALL     | SUBYMD|  3days
-mag         | _VER_    |gifs/hmon-nested            |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/hmon-full              |ALL     | SUBYMD|  8days
+mag         | _VER_    |gifs/hmon-nested            |ALL     | SUBYMD|  8days
 mag         | _VER_    |gifs/href                   |ALL     | SUBYMD|  3days
 mag         | _VER_    |gifs/hrrr                   |ALL     | SUBYMD|  3days
 mag         | _VER_    |gifs/hrw-arw                |ALL     | SUBYMD|  3days
 mag         | _VER_    |gifs/hrw-arw2               |ALL     | SUBYMD|  3days
 mag         | _VER_    |gifs/hrw-fv3                |ALL     | SUBYMD|  3days
-mag         | _VER_    |gifs/hwrf-full              |ALL     | SUBYMD|  3days
-mag         | _VER_    |gifs/hwrf-nested            |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/hwrf-full              |ALL     | SUBYMD|  8days
+mag         | _VER_    |gifs/hwrf-nested            |ALL     | SUBYMD|  8days
 mag         | _VER_    |gifs/ice-drift              |ALL     | SUBYMD|  3days
 mag         | _VER_    |gifs/naefs                  |ALL     | SUBYMD|  3days
 mag         | _VER_    |gifs/nam                    |ALL     | SUBYMD|  3days
@@ -156,6 +157,7 @@ amsu_estimation | _VER_ | amsu_estimation            |ALL     | YMD   | 10days
 amsu_estimation | _VER_ | gfs                        |ALL     | YMD   | 10days
 nhcg        | _VER_     |nhcg                        |ALL     | YMD   | 10days
 nhcg        | _VER_     |guidance                    |ALL     | YMD   | 10days
+nhcg        | _VER_     |storm-data                  |ALL     | FIXED | 10days
 wsp         | _VER_     |wsp                         |ALL     | YMD   |  7days
 nldas       | _VER_     |nldas                       |ALL     | YMD   | 11days
 nosofs      | _VER_     |cbofs                       |ALL     | YMD   |  7days
