@@ -75,9 +75,6 @@ gentracks   | _VER_     |ukmet                       |ALL     | YMD   |  6days
 gfs         | _VER_    |enkfgdas                    |ALL     | YMD   |  7days
 gfs         | _VER_    |gdas                        |ALL     | YMD   |  7days
 gfs         | _VER_    |gfs                         |ALL     | YMD   | 19days
-gfs         | _VER_    |enkfgdas                    |ALL     | YMD   |  7days
-gfs         | _VER_    |gdas                        |ALL     | YMD   |  7days
-gfs         | _VER_    |gfs                         |ALL     | YMD   | 19days
 gfs_mos     | _VER_     |gfs_mos                     |ALL     | YMD   |  6days
 nsst        | _VER_     |nsst                        |ALL     | YMD   | 12days
 glmp        | _VER_     |glmp                        |ALL     | YMD   |  6days
@@ -96,10 +93,6 @@ hrrr        | _VER_     |hrrr                        |ALL     | YMD   |  7days
 hmon        | _VER_     |hmon                        |ALL     | YMD   |  7days
 hwrf        | _VER_    |hwrf                        |ALL     | YMD   |  7days
 hurmsg      | _VER_     |hurmsg                      |ALL     | YMD   |  5days
-hysplit     | _VER_     |canned_wfo                  |ALL     | YMD   |  8days
-hysplit     | _VER_     |dustcs                      |ALL     | YMD   |  8days
-hysplit     | _VER_     |hysplit                     |ALL     | YMD   |  9days
-hysplit     | _VER_     |traj                        |ALL     | YMD   |  8days
 hysplit     | _VER_     |canned_wfo                  |ALL     | YMD   |  8days
 hysplit     | _VER_     |dustcs                      |ALL     | YMD   |  8days
 hysplit     | _VER_     |hysplit                     |ALL     | YMD   |  9days
@@ -249,34 +242,14 @@ obsproc     | _VER_     |sdm_rtdm/nam/obcount_30day/nam  |ALL     | YMD   | 33da
 obsproc     | _VER_     |sdm_rtdm/rap/obcount_30day/rap  |ALL     | YMD   | 33days
 obsproc     | _VER_     |sdm_rtdm/rtma/obcount_30day/rtma|ALL     | YMD   | 33days
 obsproc     | _VER_     |sdm_rtdm/urma/obcount_30day/urma|ALL     | YMD   | 33days
-obsproc     | _VER_     |cdas                        |ALL     | YMD   |  7days
-obsproc     | _VER_     |dump                        |ALL     | YMD   |  7days
-obsproc     | _VER_     |gdas                        |ALL     | YMD   |  7days
-obsproc     | _VER_     |gfs                         |ALL     | YMD   |  7days
-obsproc     | _VER_     |hourly                      |ALL     | YMD   |  7days
-obsproc     | _VER_     |mods                        |ALL     | YMD   |  7days
-obsproc     | _VER_     |nam                         |ALL     | YMD   |  7days
-obsproc     | _VER_     |rap                         |ALL     | YMD   |  7days
-obsproc     | _VER_     |rap_e                       |ALL     | YMD   |  7days
-obsproc     | _VER_     |rap_p                       |ALL     | YMD   |  7days
-obsproc     | _VER_     |rtma                        |ALL     | YMD   |  7days
-obsproc     | _VER_     |rtma_ru                     |ALL     | YMD   |  7days
-obsproc     | _VER_     |urma                        |ALL     | YMD   |  7days
-obsproc     | _VER_     |sdm_rtdm/dump/obcount_30day/dump|ALL     | YMD   | 33days
-obsproc     | _VER_     |sdm_rtdm/gfs/obcount_30day/gdas |ALL     | YMD   | 33days
-obsproc     | _VER_     |sdm_rtdm/gfs/obcount_30day/gfs  |ALL     | YMD   | 33days
-obsproc     | _VER_     |sdm_rtdm/nam/obcount_30day/nam  |ALL     | YMD   | 33days
-obsproc     | _VER_     |sdm_rtdm/rap/obcount_30day/rap  |ALL     | YMD   | 33days
-obsproc     | _VER_     |sdm_rtdm/rtma/obcount_30day/rtma|ALL     | YMD   | 33days
-obsproc     | _VER_     |sdm_rtdm/urma/obcount_30day/urma|ALL     | YMD   | 33days
 seaice_drift| _VER_     |seaice_drift                |ALL     | YMD   |  7days
 seaice_analysis| _VER_  |seaice_analysis             |ALL     | YMD   |  7days
 pcpanl      | _VER_     |pcpanl                      |ALL     | YMD   | 15days
 pcpanl      | _VER_     |pcpurma                     |ALL     | YMD   | 15days
 petss       | _VER_     |petss                       |ALL     | YMD   |  6days
 psurge      | _VER_    |psurge                      |ALL     | YMD   | 15days
-rap         | _VER_     |rap                         |ALL     | YMD   |  7days
-rap         | _VER_     |rap_p                       |ALL     | YMD   |  7days
+rap         | _VER_     |rap                         |ALL     | YMD   |  6days
+rap         | _VER_     |rap_p                       |ALL     | YMD   |  6days
 rap         | _VER_     |nwges                       |ALL     | FIXED |  3days
 rcdas       | _VER_     |rcdas                       |ALL     | YMD   | 11days
 rtdm        | _VER_     |gds                         |ALL     | YMD   |  2days
@@ -338,4 +311,5 @@ wfs         | _VER_     |wfs                         |ALL     | YMD   |  3days
 wsa_enlil   | _VER_     |wsa_enlil                   |ALL     | YMD   |  7days
 wsa_enlil   | _VER_     |wsa_enlil                   |ALL     | FIXED | 40days
 wsr         | _VER_     |wsr                         |ALL     | YMD   |  7days
+marine34    | _VER_     |marine34                    |ALL     | YMD   |  7days
 marine34    | _VER_     |marine34                    |ALL     | YM    | 63days
