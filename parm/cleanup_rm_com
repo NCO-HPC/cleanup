@@ -37,6 +37,7 @@ ccpa        | _VER_     |ccpa                        |ALL     | YMD   | 13days
 ccpa        | _VER_     |nwges/ccpa                  |ALL     | YMD   | 13days
 cdas        | _VER_     |cdas                        |ALL     | YMD   |  7days
 cdas2       | _VER_     |cdas2                       |ALL     | YMD   | 10days
+cfs_hur     | _VER_     |cfs_hur                     |ALL     | YMD   |365days
 cmc         | _VER_     |cmc                         |ALL     | YMD   |  7days
 cadb        | _VER_     |cadb                        |ALL     | YMD   |  5days
 cpci        | _VER_     |cpci                        |ALL     | YMD   |  6days
