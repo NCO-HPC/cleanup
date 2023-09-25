@@ -17,10 +17,10 @@ nco_mag    |${clean_envir}_data/nbm           | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/storm-tracks  | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/hrw-fv3       | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/hrw-nmmb      | 2 | 2 | 2 | 2 | 2 | 2 |
-nco_mag    |${clean_envir}_data/hwrf-full     | 2 | 2 | 2 | 2 | 2 | 2 |
-nco_mag    |${clean_envir}_data/hwrf-nested   | 2 | 2 | 2 | 2 | 2 | 2 |
-nco_mag    |${clean_envir}_data/hmon-full     | 2 | 2 | 2 | 2 | 2 | 2 |
-nco_mag    |${clean_envir}_data/hmon-nested   | 2 | 2 | 2 | 2 | 2 | 2 |
+nco_mag    |${clean_envir}_data/hfsa-parent   | 2 | 2 | 2 | 2 | 2 | 2 |
+nco_mag    |${clean_envir}_data/hfsa-nested   | 2 | 2 | 2 | 2 | 2 | 2 |
+nco_mag    |${clean_envir}_data/hfsb-parent   | 2 | 2 | 2 | 2 | 2 | 2 |
+nco_mag    |${clean_envir}_data/hfsb-nested   | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/naefs         | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/nam           | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/nam-snd       | 2 | 2 | 2 | 2 | 2 | 2 |
