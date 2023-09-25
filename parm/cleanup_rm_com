@@ -251,6 +251,7 @@ seaice_analysis| _VER_  |seaice_analysis             |ALL     | YMD   |  7days
 pcpanl      | _VER_     |pcpanl                      |ALL     | YMD   | 15days
 pcpanl      | _VER_     |pcpurma                     |ALL     | YMD   | 15days
 petss       | _VER_     |petss                       |ALL     | YMD   |  6days
+petss       | _VER_     |etss                        |ALL     | YMD   |  6days
 psurge      | _VER_     |psurge                      |ALL     | YMD   | 15days
 rap         | _VER_     |rap                         |ALL     | YMD   |  6days
 rap         | _VER_     |rap_p                       |ALL     | YMD   |  6days
