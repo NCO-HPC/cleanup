@@ -89,9 +89,11 @@ href        | _VER_     |nwges/href                  |ALL     | YMD   |  6days
 cpg         | _VER_     |cpg                         |ALL     | YMD   |  6days
 radarl2     | _VER_     |radar                       |ALL     | YMD   |  7days
 radarl2     | _VER_     |radar                       |ALL     | YMDH  |  7days
+hafs        | _VER_     |hfsa                        |ALL     | YMD   |  7days
+hafs        | _VER_     |hfsb                        |ALL     | YMD   |  7days
 hrrr        | _VER_     |hrrr                        |ALL     | YMD   |  7days
 hmon        | _VER_     |hmon                        |ALL     | YMD   |  7days
-hwrf        | _VER_    |hwrf                        |ALL     | YMD   |  7days
+hwrf        | _VER_     |hwrf                        |ALL     | YMD   |  7days
 hurmsg      | _VER_     |hurmsg                      |ALL     | YMD   |  5days
 hysplit     | _VER_     |canned_wfo                  |ALL     | YMD   |  8days
 hysplit     | _VER_     |dustcs                      |ALL     | YMD   |  8days
@@ -136,6 +138,8 @@ mag         | _VER_    |gifs/stofs                  |ALL     | SUBYMD|  3days
 mag         | _VER_    |gifs/storm-tracks           |ALL     | SUBYMD|  3days
 mag         | _VER_    |gifs/uair                   |ALL     | SUBYMD|  3days
 mag         | _VER_    |mag                         |ALL     | YMD   | 15days
+marine34    | _VER_     |marine34                    |ALL     | YMD   |  7days
+marine34    | _VER_     |marine34                    |ALL     | YM    | 63days
 hry_mos     | _VER_     |hry_mos                     |ALL     | YMD   |  7days
 naefs       | _VER_     |cmce                        |ALL     | YMD   |  6days
 naefs       | _VER_     |fens                        |ALL     | YMD   |  6days
@@ -247,7 +251,7 @@ seaice_analysis| _VER_  |seaice_analysis             |ALL     | YMD   |  7days
 pcpanl      | _VER_     |pcpanl                      |ALL     | YMD   | 15days
 pcpanl      | _VER_     |pcpurma                     |ALL     | YMD   | 15days
 petss       | _VER_     |petss                       |ALL     | YMD   |  6days
-psurge      | _VER_    |psurge                      |ALL     | YMD   | 15days
+psurge      | _VER_     |psurge                      |ALL     | YMD   | 15days
 rap         | _VER_     |rap                         |ALL     | YMD   |  6days
 rap         | _VER_     |rap_p                       |ALL     | YMD   |  6days
 rap         | _VER_     |nwges                       |ALL     | FIXED |  3days
@@ -311,5 +315,3 @@ wfs         | _VER_     |wfs                         |ALL     | YMD   |  3days
 wsa_enlil   | _VER_     |wsa_enlil                   |ALL     | YMD   |  7days
 wsa_enlil   | _VER_     |wsa_enlil                   |ALL     | FIXED | 40days
 wsr         | _VER_     |wsr                         |ALL     | YMD   |  7days
-marine34    | _VER_     |marine34                    |ALL     | YMD   |  7days
-marine34    | _VER_     |marine34                    |ALL     | YM    | 63days
