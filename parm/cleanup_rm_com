@@ -15,6 +15,8 @@
 #  -SUBYM: Subdirectories of specified directory have names following YYYYMM
 #          format. Selection for deletion is based on the date in the name.
 #  -YMDH: Like YMD, but with NET/RUN.YYYYMMDDHH format.
+#  -YM: Directory to be cleaned follows RUN.YYYYMM format. Selection for
+#       deletion is based on the date in the name.
 #
 # TIME TO KEEP column requires units. Units can be any that are compatible
 # with the system 'date' command.
@@ -25,276 +27,294 @@
 #-----------|----------|----------------------------|--------|-------|------------------------|
 #NET        | SHORTVER |RUN                         |COMROOT |TYPE   | TIME TO KEEP           |
 #-----------|----------|----------------------------|--------|-------|------------------------|
-aqm         | v6.1     |ak                          |ALL     | YMD   | 11days
-aqm         | v6.1     |hi                          |ALL     | YMD   | 11days
-aqm         | v6.1     |cs                          |ALL     | YMD   | 11days
-baseline    | v1.0     |baseline                    |ALL     | YMD   |  5days
-baseline    | v1.0     |gefs                        |ALL     | YMD   |  5days
-baseline    | v1.0     |hrrr                        |ALL     | YMD   |  5days
-blend       | v4.0     |blend                       |ALL     | YMD   | 15days
-blend       | v4.0     |nwges/blend                 |ALL     | YMD   | 15days
-ccpa        | v4.2     |ccpa                        |ALL     | YMD   | 10days
-ccpa        | v4.2     |nwges/ccpa                  |ALL     | YMD   | 10days
-cdas        | v1.2     |cdas                        |ALL     | YMD   |  7days
-cdas2       | v1.2     |cdas2                       |ALL     | YMD   | 10days
-cmc         | v1.2     |cmc                         |ALL     | YMD   |  7days
-cadb        | v1.2     |cadb                        |ALL     | YMD   |  5days
-cpci        | v1.4     |cpci                        |ALL     | YMD   |  6days
-ecmwf       | v2.1     |ecmwf                       |ALL     | YMD   |  6days
-ecmwf_mos   | v1.2     |ecmwf_mos                   |ALL     | YMD   |  6days
-ens_tracker | v1.3     |cmce                        |ALL     | YMD   |  6days
-ens_tracker | v1.3     |ecme                        |ALL     | YMD   |  6days
-ens_tracker | v1.3     |fens                        |ALL     | YMD   |  6days
-ens_tracker | v1.3     |gefs                        |ALL     | YMD   |  6days
-ens_tracker | v1.3     |gfs                         |ALL     | YMD   |  6days
-ens_tracker | v1.3     |ukmet                       |ALL     | YMD   |  6days
-estofs      | v2.1     |estofs                      |ALL     | YMD   |  6days
-etss        | v2.4     |etss                        |ALL     | YMD   |  6days
-fnmoc_wave  | v1.1     |fnmoc_wave                  |ALL     | YMD   |  3days
-navgem      | v2.2     |navgem                      |ALL     | YMD   |  3days
-gefs        | v12.2    |gefs                        |ALL     | YMD   | 20days
-gentracks   | v3.5     |cmc                         |ALL     | YMD   |  6days
-gentracks   | v3.5     |cmce                        |ALL     | YMD   |  6days
-gentracks   | v3.5     |ecmwf                       |ALL     | YMD   |  6days
-gentracks   | v3.5     |ecme                        |ALL     | YMD   |  6days
-gentracks   | v3.5     |eens                        |ALL     | YMD   |  6days
-gentracks   | v3.5     |fens                        |ALL     | YMD   |  6days
-gentracks   | v3.5     |gefs                        |ALL     | YMD   |  6days
-gentracks   | v3.5     |gentracks                   |ALL     | YMD   | 10days
-gentracks   | v3.5     |gfs                         |ALL     | YMD   |  6days
-gentracks   | v3.5     |nam                         |ALL     | YMD   |  6days
-gentracks   | v3.5     |navgem                      |ALL     | YMD   |  6days
-gentracks   | v3.5     |sref                        |ALL     | YMD   |  6days
-gentracks   | v3.5     |ukmet                       |ALL     | YMD   |  6days
-gfs         | v16.2    |enkfgdas                    |ALL     | YMD   |  7days
-gfs         | v16.2    |gdas                        |ALL     | YMD   |  7days
-gfs         | v16.2    |gfs                         |ALL     | YMD   | 19days
-gfs_mos     | v5.3     |gfs_mos                     |ALL     | YMD   |  6days
-nsst        | v1.2     |nsst                        |ALL     | YMD   | 12days
-glmp        | v2.4     |glmp                        |ALL     | YMD   |  6days
-glwu        | v1.1     |glwu                        |ALL     | YMD   | 11days
-godas       | v1.1     |godas                       |ALL     | YMD   | 32days
-godas       | v1.1     |godas2                      |ALL     | YMD   | 32days
-godas       | v1.1     |godas_ext                   |ALL     | YMD   | 32days
-gpspw       | v1.2     |gpspw                       |ALL     | YMD   |  7days
-hiresw      | v8.1     |hiresw                      |ALL     | YMD   |  6days
-href        | v3.1     |href                        |ALL     | YMD   |  6days
-href        | v3.1     |nwges/href                  |ALL     | YMD   |  3days
-cpg         | v1.1     |cpg                         |ALL     | YMD   |  6days
-radarl2     | v1.2     |radar                       |ALL     | YMD   |  7days
-radarl2     | v1.2     |radar                       |ALL     | YMDH  |  7days
-hrrr        | v4.1     |hrrr                        |ALL     | YMD   |  7days
-hmon        | v3.2     |hmon                        |ALL     | YMD   |  7days
-hwrf        | v13.2    |hwrf                        |ALL     | YMD   |  7days
-hurmsg      | v1.1     |hurmsg                      |ALL     | YMD   |  5days
-hysplit     | v7.9     |canned_wfo                  |ALL     | YMD   |  8days
-hysplit     | v7.9     |dustcs                      |ALL     | YMD   |  8days
-hysplit     | v7.9     |hysplit                     |ALL     | YMD   |  9days
-hysplit     | v7.9     |traj                        |ALL     | YMD   |  8days
-ifi         | v1.4     |ifi                         |ALL     | YMD   |  5days
-cip         | v1.6     |cip                         |ALL     | YMD   |  5days
-jma         | v1.1     |jma                         |ALL     | YMD   |  7days
-lmp         | v2.4     |lmp                         |ALL     | YMD   |  6days
-madis       | v1.2     |madis                       |ALL     | YMD   |  3days
-mag         | v3.20    |gifs/estofs                 |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/firewx                 |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/gefs-mean-sprd         |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/gefs-spag              |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/gfs                    |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/gfs-snd                |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/gfs-wave               |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/hmon-full              |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/hmon-nested            |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/href                   |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/hrrr                   |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/hrw-arw                |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/hrw-arw2               |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/hrw-fv3                |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/hwrf-full              |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/hwrf-nested            |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/ice-drift              |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/naefs                  |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/nam                    |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/nam-hires              |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/nam-snd                |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/nbm                    |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/rap                    |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/rtma                   |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/skewt                  |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/sref                   |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/sref-cluster           |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/storm-tracks           |ALL     | SUBYMD|  3days
-mag         | v3.20    |gifs/uair                   |ALL     | SUBYMD|  3days
-mag         | v3.20    |mag                         |ALL     | YMD   | 15days
-hry_mos     | v1.1     |hry_mos                     |ALL     | YMD   |  7days
-naefs       | v6.1     |cmce                        |ALL     | YMD   |  6days
-naefs       | v6.1     |fens                        |ALL     | YMD   |  6days
-naefs       | v6.1     |gefs                        |ALL     | YMD   |  6days
-naefs       | v6.1     |naefs                       |ALL     | YMD   | 18days
-nam         | v4.2     |nam                         |ALL     | YMD   |  8days
-nam         | v4.2     |nwges/nam                   |ALL     | YMD   |  3days
-nam_mos     | v3.5     |nam_mos                     |ALL     | YMD   | 10days
-narre       | v1.2     |narre                       |ALL     | YMD   |  5days
-nesdis      | v1.1     |nesdis                      |ALL     | YMD   |  7days
-amsu_estimation | v1.3 | amsu_estimation            |ALL     | YMD   | 10days
-amsu_estimation | v1.3 | gfs                        |ALL     | YMD   | 10days
-nhcg        | v3.3     |nhcg                        |ALL     | YMD   | 10days
-nhcg        | v3.3     |guidance                    |ALL     | YMD   | 10days
-wsp         | v1.7     |wsp                         |ALL     | YMD   |  7days
-nldas       | v2.1     |nldas                       |ALL     | YMD   | 11days
-nos         | v3.4     |cbofs                       |ALL     | YMD   |  7days
-nos         | v3.4     |ciofs                       |ALL     | YMD   |  7days
-nos         | v3.4     |creofs                      |ALL     | YMD   |  7days
-nos         | v3.4     |dbofs                       |ALL     | YMD   |  7days
-glofs       | v2.1     |glofs                       |ALL     | YMD   |  7days
-nos         | v3.4     |gomofs                      |ALL     | YMD   |  7days
-nos         | v3.4     |leofs                       |ALL     | YMD   |  7days
-nos         | v3.4     |lmhofs                      |ALL     | YMD   |  7days
-nos         | v3.4     |ngofs2                      |ALL     | YMD   |  7days
-nos         | v3.4     |sfbofs                      |ALL     | YMD   |  7days
-nos         | v3.4     |tbofs                       |ALL     | YMD   |  7days
-nos         | v3.4     |wcofs                       |ALL     | YMD   |  7days
-nos         | v3.4     |wcofs_da                    |ALL     | YMD   |  7days
-nos         | v3.4     |wcofs_free                  |ALL     | YMD   |  7days
-nwm         | v2.2     |nwm                         |ALL     | YMD   | 11days
-nwm         | v2.2     |nwm.grib2netcdf/cfs         |ALL     | YMD   |  5days
-nwm         | v2.2     |nwm.grib2netcdf/gfs         |ALL     | YMD   |  5days
-nwm         | v2.2     |nwm.grib2netcdf/hrrr        |ALL     | YMD   |  5days
-nwm         | v2.2     |nwm.grib2netcdf/rap         |ALL     | YMD   |  5days
-nwm         | v2.2     |nwm.grib2netcdf/nam         |ALL     | YMD   |  5days
-nwm         | v2.2     |nwm.grib2netcdf/hiresw      |ALL     | YMD   |  5days
-nwm         | v2.2     |nwm.grib2netcdf/logs        |ALL     | YMD   |  5days
-nwps        | v1.4     |ar                          |ALL     | YMD   |  6days
-nwps        | v1.4     |er                          |ALL     | YMD   |  6days
-nwps        | v1.4     |ofs                         |ALL     | YMD   |  6days
-nwps        | v1.4     |pr                          |ALL     | YMD   |  6days
-nwps        | v1.4     |sr                          |ALL     | YMD   |  6days
-nwps        | v1.4     |wr                          |ALL     | YMD   |  6days
-nwps        | v1.4     |nwps                        |ALL     | YMD   |  6days
-nwps        | v1.4     |psurge                      |ALL     | YMD   |  6days
-nwps        | v1.4     |estofs                      |ALL     | YMD   |  1days
-nwps        | v1.4     |rtofs                       |ALL     | YMD   |  1days
-nwps        | v1.4     |aer                         |ALL     | YMD   |  1days
-nwps        | v1.4     |afg                         |ALL     | YMD   |  1days
-nwps        | v1.4     |ajk                         |ALL     | YMD   |  1days
-nwps        | v1.4     |akq                         |ALL     | YMD   |  1days
-nwps        | v1.4     |alu                         |ALL     | YMD   |  1days
-nwps        | v1.4     |box                         |ALL     | YMD   |  1days
-nwps        | v1.4     |bro                         |ALL     | YMD   |  1days
-nwps        | v1.4     |car                         |ALL     | YMD   |  1days
-nwps        | v1.4     |chs                         |ALL     | YMD   |  1days
-nwps        | v1.4     |crp                         |ALL     | YMD   |  1days
-nwps        | v1.4     |eka                         |ALL     | YMD   |  1days
-nwps        | v1.4     |gum                         |ALL     | YMD   |  1days
-nwps        | v1.4     |gyx                         |ALL     | YMD   |  1days
-nwps        | v1.4     |hfo                         |ALL     | YMD   |  1days
-nwps        | v1.4     |hgx                         |ALL     | YMD   |  1days
-nwps        | v1.4     |ilm                         |ALL     | YMD   |  1days
-nwps        | v1.4     |jax                         |ALL     | YMD   |  1days
-nwps        | v1.4     |key                         |ALL     | YMD   |  1days
-nwps        | v1.4     |lch                         |ALL     | YMD   |  1days
-nwps        | v1.4     |lix                         |ALL     | YMD   |  1days
-nwps        | v1.4     |lox                         |ALL     | YMD   |  1days
-nwps        | v1.4     |lwx                         |ALL     | YMD   |  1days
-nwps        | v1.4     |mfl                         |ALL     | YMD   |  1days
-nwps        | v1.4     |mfr                         |ALL     | YMD   |  1days
-nwps        | v1.4     |mhx                         |ALL     | YMD   |  1days
-nwps        | v1.4     |mlb                         |ALL     | YMD   |  1days
-nwps        | v1.4     |mob                         |ALL     | YMD   |  1days
-nwps        | v1.4     |mtr                         |ALL     | YMD   |  1days
-nwps        | v1.4     |okx                         |ALL     | YMD   |  1days
-nwps        | v1.4     |phi                         |ALL     | YMD   |  1days
-nwps        | v1.4     |pqr                         |ALL     | YMD   |  1days
-nwps        | v1.4     |sew                         |ALL     | YMD   |  1days
-nwps        | v1.4     |sgx                         |ALL     | YMD   |  1days
-nwps        | v1.4     |sju                         |ALL     | YMD   |  1days
-nwps        | v1.4     |tae                         |ALL     | YMD   |  1days
-nwps        | v1.4     |tbw                         |ALL     | YMD   |  1days
-obsproc     | v1.0     |cdas                        |ALL     | YMD   |  7days
-obsproc     | v1.0     |dump                        |ALL     | YMD   |  7days
-obsproc     | v1.0     |gdas                        |ALL     | YMD   |  7days
-obsproc     | v1.0     |gfs                         |ALL     | YMD   |  7days
-obsproc     | v1.0     |hourly                      |ALL     | YMD   |  7days
-obsproc     | v1.0     |mods                        |ALL     | YMD   |  7days
-obsproc     | v1.0     |nam                         |ALL     | YMD   |  7days
-obsproc     | v1.0     |rap                         |ALL     | YMD   |  7days
-obsproc     | v1.0     |rap_e                       |ALL     | YMD   |  7days
-obsproc     | v1.0     |rap_p                       |ALL     | YMD   |  7days
-obsproc     | v1.0     |rtma                        |ALL     | YMD   |  7days
-obsproc     | v1.0     |rtma_ru                     |ALL     | YMD   |  7days
-obsproc     | v1.0     |urma                        |ALL     | YMD   |  7days
-obsproc     | v1.0     |sdm_rtdm/dump/obcount_30day/dump|ALL     | YMD   | 33days
-obsproc     | v1.0     |sdm_rtdm/gfs/obcount_30day/gdas |ALL     | YMD   | 33days
-obsproc     | v1.0     |sdm_rtdm/gfs/obcount_30day/gfs  |ALL     | YMD   | 33days
-obsproc     | v1.0     |sdm_rtdm/nam/obcount_30day/nam  |ALL     | YMD   | 33days
-obsproc     | v1.0     |sdm_rtdm/rap/obcount_30day/rap  |ALL     | YMD   | 33days
-obsproc     | v1.0     |sdm_rtdm/rtma/obcount_30day/rtma|ALL     | YMD   | 33days
-obsproc     | v1.0     |sdm_rtdm/urma/obcount_30day/urma|ALL     | YMD   | 33days
-seaice_drift| v4.1     |seaice_drift                |ALL     | YMD   |  7days
-seaice_analysis| v4.5  |seaice_analysis             |ALL     | YMD   |  7days
-pcpanl      | v4.1     |pcpanl                      |ALL     | YMD   | 15days
-pcpanl      | v4.1     |pcpurma                     |ALL     | YMD   | 15days
-petss       | v1.2     |petss                       |ALL     | YMD   |  6days
-psurge      | v2.10    |psurge                      |ALL     | YMD   | 15days
-rap         | v5.1     |rap                         |ALL     | YMD   |  7days
-rap         | v5.1     |rap_p                       |ALL     | YMD   |  7days
-rap         | v5.1     |nwges                       |ALL     | FIXED |  3days
-rcdas       | v1.2     |rcdas                       |ALL     | YMD   | 11days
-rtdm        | v5.1     |gds                         |ALL     | YMD   |  2days
-rtdm        | v5.1     |gfs                         |ALL     | YMD   |  2days
-rtdm        | v5.1     |hourly                      |ALL     | YMD   |  5days
-rtdm        | v5.1     |nam                         |ALL     | YMD   |  2days
-rtdm        | v5.1     |rap                         |ALL     | YMD   |  5days
-rtma        | v2.9     |akrtma                      |ALL     | YMD   |  5days
-rtma        | v2.9     |gurtma                      |ALL     | YMD   |  5days
-rtma        | v2.9     |hirtma                      |ALL     | YMD   |  5days
-rtma        | v2.9     |prrtma                      |ALL     | YMD   |  5days
-rtma        | v2.9     |rtma2p5                     |ALL     | YMD   |  7days
-rtma        | v2.9     |rtma2p5_ru                  |ALL     | YMD   |  5days
-rtma        | v2.9     |pcprtma                     |ALL     | YMD   | 11days
-rtma        | v2.9     |nwges/akrtma                |ALL     | YMD   |  3days
-rtma        | v2.9     |nwges/gurtma                |ALL     | YMD   |  3days
-rtma        | v2.9     |nwges/hirtma                |ALL     | YMD   |  3days
-rtma        | v2.9     |nwges/prrtma                |ALL     | YMD   |  3days
-rtma        | v2.9     |nwges/rtma2p5               |ALL     | YMD   |  3days
-rtma        | v2.9     |nwges/rtma2p5_ru            |ALL     | YMD   |  3days
-rtofs       | v2.2     |rtofs                       |ALL     | YMD   |  7days
-rtofs       | v2.2     |nwges/rtofs                 |ALL     | YMD   |  7days
-sfcship     | v1.1     |sfcship                     |ALL     | YMD   |  7days
-smartinit   | v4.4     |nam                         |ALL     | YMD   |  8days
-spc_post    | v1.1     |spc_post                    |ALL     | YMD   |  7days
-spcsref     | v7.2     |spcsref                     |ALL     | YMD   |  7days
-sref        | v7.1     |sref                        |ALL     | YMD   | 10days
-sref        | v7.1     |nwges/sref                  |ALL     | YMD   |  3days
-thanks      | v3.1     |thanks                      |ALL     | SUBYMD| 63days
-ukmet       | v2.2     |ukmet                       |ALL     | YMD   | 10days
-urma        | v2.9     |akurma                      |ALL     | YMD   |  6days
-urma        | v2.9     |hiurma                      |ALL     | YMD   |  6days
-urma        | v2.9     |pcpurma                     |ALL     | YMD   | 11days
-urma        | v2.9     |prurma                      |ALL     | YMD   |  6days
-urma        | v2.9     |urma                        |ALL     | YMD   | 11days
-urma        | v2.9     |urma2p5                     |ALL     | YMD   |  6days
-urma        | v2.9     |nwges/akurma                |ALL     | YMD   |  3days
-urma        | v2.9     |nwges/hiurma                |ALL     | YMD   |  3days
-urma        | v2.9     |nwges/prurma                |ALL     | YMD   |  3days
-urma        | v2.9     |nwges/urma2p5               |ALL     | YMD   |  3days
-uvi         | v1.1     |uvi                         |ALL     | YMD   |  6days
-verf_g2g    | v3.2     |cloud                       |ALL     | YMD   |  8days
-verf_g2g    | v3.2     |dust                        |ALL     | YMD   |  8days
-verf_g2g    | v3.2     |ens                         |ALL     | YMD   | 15days
-verf_g2g    | v3.2     |etop                        |ALL     | YMD   |  8days
-verf_g2g    | v3.2     |firewx                      |ALL     | YMD   |  8days
-verf_g2g    | v3.2     |href                        |ALL     | YMD   |  8days
-verf_g2g    | v3.2     |reflt                       |ALL     | YMD   |  8days
-verf_g2g    | v3.2     |urma                        |ALL     | YMD   |  8days
-verf_g2g    | v3.2     |vsdb                        |ALL     | FIXED | 40days
-verf_gridtobs | v4.5   |verf_gridtobs               |ALL     | YMD   |  8days
-verf_gridtobs | v4.5   |vsdb/gridtobs               |ALL     | FIXED | 40days
-verf_precip | v4.5     |href_apcp                   |ALL     | YMD   |  8days
-verf_precip | v4.5     |precip                      |ALL     | YMD   | 14days
-verf_precip | v4.5     |vsdb                        |ALL     | FIXED | 40days
-wave_nfcens | v1.3     |nfcens                      |ALL     | YMD   | 11days
-wfs         | v1.1     |wdas                        |ALL     | YMD   |  3days
-wfs         | v1.1     |wfs                         |ALL     | YMD   |  3days
-wsa_enlil   | v2.2     |wsa_enlil                   |ALL     | YMD   |  7days
-wsr         | v3.3     |wsr                         |ALL     | YMD   |  7days
+aqm         | _VER_     |ak                          |ALL     | YMD   | 11days
+aqm         | _VER_     |hi                          |ALL     | YMD   | 11days
+aqm         | _VER_     |cs                          |ALL     | YMD   | 11days
+aqm         | _VER_     |bcdata                      |ALL     | YM    |457days
+baseline    | _VER_     |baseline                    |ALL     | YMD   |  5days
+baseline    | _VER_     |gefs                        |ALL     | YMD   |  5days
+baseline    | _VER_     |hrrr                        |ALL     | YMD   |  5days
+blend       | _VER_     |blend                       |ALL     | YMD   | 15days
+blend       | _VER_     |nwges/blend                 |ALL     | YMD   | 15days
+ccpa        | _VER_     |ccpa                        |ALL     | YMD   | 13days
+ccpa        | _VER_     |nwges/ccpa                  |ALL     | YMD   | 13days
+cdas        | _VER_     |cdas                        |ALL     | YMD   |  7days
+cdas2       | _VER_     |cdas2                       |ALL     | YMD   | 10days
+cfs_hur     | _VER_     |cfs_hur                     |ALL     | YMD   |365days
+cmc         | _VER_     |cmc                         |ALL     | YMD   |  7days
+cadb        | _VER_     |cadb                        |ALL     | YMD   |  5days
+cpci        | _VER_     |cpci                        |ALL     | YMD   |  6days
+ecmwf       | _VER_     |ecmwf                       |ALL     | YMD   |  6days
+ecmwf_mos   | _VER_     |ecmwf_mos                   |ALL     | YMD   |  6days
+ens_tracker | _VER_     |cmce                        |ALL     | YMD   |  6days
+ens_tracker | _VER_     |ecme                        |ALL     | YMD   |  6days
+ens_tracker | _VER_     |fens                        |ALL     | YMD   |  6days
+ens_tracker | _VER_     |gefs                        |ALL     | YMD   |  6days
+ens_tracker | _VER_     |gfs                         |ALL     | YMD   |  6days
+ens_tracker | _VER_     |ukmet                       |ALL     | YMD   |  6days
+epoch       | _VER_     |epoch                       |ALL     | YMD   | 30days
+estofs      | _VER_     |estofs                      |ALL     | YMD   |  6days
+stofs       | _VER_     |stofs_2d_glo                |ALL     | YMD   |  6days
+stofs       | _VER_     |stofs_3d_atl                |ALL     | YMD   |  6days
+etss        | _VER_     |etss                        |ALL     | YMD   |  6days
+fnmoc_wave  | _VER_     |fnmoc_wave                  |ALL     | YMD   |  3days
+navgem      | _VER_     |navgem                      |ALL     | YMD   |  3days
+gefs        | _VER_     |gefs                        |ALL     | YMD   | 20days
+gentracks   | _VER_     |cmc                         |ALL     | YMD   |  6days
+gentracks   | _VER_     |cmce                        |ALL     | YMD   |  6days
+gentracks   | _VER_     |ecmwf                       |ALL     | YMD   |  6days
+gentracks   | _VER_     |ecme                        |ALL     | YMD   |  6days
+gentracks   | _VER_     |eens                        |ALL     | YMD   |  6days
+gentracks   | _VER_     |fens                        |ALL     | YMD   |  6days
+gentracks   | _VER_     |gefs                        |ALL     | YMD   |  6days
+gentracks   | _VER_     |gentracks                   |ALL     | YMD   | 10days
+gentracks   | _VER_     |gfs                         |ALL     | YMD   |  6days
+gentracks   | _VER_     |nam                         |ALL     | YMD   |  6days
+gentracks   | _VER_     |navgem                      |ALL     | YMD   |  6days
+gentracks   | _VER_     |sref                        |ALL     | YMD   |  6days
+gentracks   | _VER_     |ukmet                       |ALL     | YMD   |  6days
+gfs         | _VER_    |enkfgdas                    |ALL     | YMD   |  7days
+gfs         | _VER_    |gdas                        |ALL     | YMD   |  7days
+gfs         | _VER_    |gfs                         |ALL     | YMD   | 19days
+gfs_mos     | _VER_     |gfs_mos                     |ALL     | YMD   |  6days
+nsst        | _VER_     |nsst                        |ALL     | YMD   | 12days
+glmp        | _VER_     |glmp                        |ALL     | YMD   |  6days
+glwu        | _VER_     |glwu                        |ALL     | YMD   | 11days
+godas       | _VER_     |godas                       |ALL     | YMD   | 32days
+godas       | _VER_     |godas2                      |ALL     | YMD   | 32days
+godas       | _VER_     |godas_ext                   |ALL     | YMD   | 32days
+gpspw       | _VER_     |gpspw                       |ALL     | YMD   |  7days
+hiresw      | _VER_     |hiresw                      |ALL     | YMD   |  6days
+href        | _VER_     |href                        |ALL     | YMD   |  6days
+href        | _VER_     |nwges/href                  |ALL     | YMD   |  6days
+cpg         | _VER_     |cpg                         |ALL     | YMD   |  6days
+radarl2     | _VER_     |radar                       |ALL     | YMD   |  7days
+radarl2     | _VER_     |radar                       |ALL     | YMDH  |  7days
+hafs        | _VER_     |hfsa                        |ALL     | YMD   |  7days
+hafs        | _VER_     |hfsb                        |ALL     | YMD   |  7days
+hrrr        | _VER_     |hrrr                        |ALL     | YMD   |  7days
+hmon        | _VER_     |hmon                        |ALL     | YMD   |  7days
+hwrf        | _VER_     |hwrf                        |ALL     | YMD   |  7days
+hurmsg      | _VER_     |hurmsg                      |ALL     | YMD   |  5days
+hysplit     | _VER_     |canned_wfo                  |ALL     | YMD   |  8days
+hysplit     | _VER_     |dustcs                      |ALL     | YMD   |  8days
+hysplit     | _VER_     |hysplit                     |ALL     | YMD   |  9days
+hysplit     | _VER_     |traj                        |ALL     | YMD   |  8days
+hysplit     | _VER_     |sdm                         |ALL     | SUBYMD|  9days
+hysplit     | _VER_     |sdm/wfo                     |ALL     | SUBYMD|  9days
+hysplit     | _VER_     |restrict                    |ALL     | FIXED |  9days
+ifi         | _VER_     |ifi                         |ALL     | YMD   |  5days
+cip         | _VER_     |cip                         |ALL     | YMD   |  5days
+jma         | _VER_     |jma                         |ALL     | YMD   |  7days
+lmp         | _VER_     |lmp                         |ALL     | YMD   |  6days
+madis       | _VER_     |madis                       |ALL     | YMD   |  3days
+mag         | _VER_    |gifs/firewx                 |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/gefs-mean-sprd         |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/gefs-spag              |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/gefs-wave              |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/gfs                    |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/gfs-snd                |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/gfs-wave               |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/hfsa-parent            |ALL     | SUBYMD|  8days
+mag         | _VER_    |gifs/hfsa-nested            |ALL     | SUBYMD|  8days
+mag         | _VER_    |gifs/hfsb-parent            |ALL     | SUBYMD|  8days
+mag         | _VER_    |gifs/hfsb-nested            |ALL     | SUBYMD|  8days
+mag         | _VER_    |gifs/href                   |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/hrrr                   |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/hrw-arw                |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/hrw-arw2               |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/hrw-fv3                |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/ice-drift              |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/naefs                  |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/nam                    |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/nam-hires              |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/nam-snd                |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/nbm                    |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/rap                    |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/rtma                   |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/skewt                  |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/sref                   |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/sref-cluster           |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/stofs                  |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/storm-tracks           |ALL     | SUBYMD|  3days
+mag         | _VER_    |gifs/uair                   |ALL     | SUBYMD|  3days
+mag         | _VER_    |mag                         |ALL     | YMD   | 15days
+marine34    | _VER_     |marine34                    |ALL     | YMD   |  7days
+marine34    | _VER_     |marine34                    |ALL     | YM    | 63days
+hry_mos     | _VER_     |hry_mos                     |ALL     | YMD   |  7days
+naefs       | _VER_     |cmce                        |ALL     | YMD   |  6days
+naefs       | _VER_     |fens                        |ALL     | YMD   |  6days
+naefs       | _VER_     |gefs                        |ALL     | YMD   |  6days
+naefs       | _VER_     |naefs                       |ALL     | YMD   | 18days
+nam         | _VER_     |nam                         |ALL     | YMD   |  8days
+nam         | _VER_     |nwges/nam                   |ALL     | YMD   |  3days
+nam_mos     | _VER_     |nam_mos                     |ALL     | YMD   | 10days
+narre       | _VER_     |narre                       |ALL     | YMD   |  5days
+nesdis      | _VER_     |nesdis                      |ALL     | YMD   |  7days
+amsu_estimation | _VER_ | amsu_estimation            |ALL     | YMD   | 10days
+amsu_estimation | _VER_ | gfs                        |ALL     | YMD   | 10days
+nhcg        | _VER_     |nhcg                        |ALL     | YMD   | 10days
+nhcg        | _VER_     |guidance                    |ALL     | YMD   | 10days
+nhcg        | _VER_     |storm-data                  |ALL     | FIXED | 10days
+wsp         | _VER_     |wsp                         |ALL     | YMD   |  7days
+nldas       | _VER_     |nldas                       |ALL     | YMD   | 11days
+nosofs      | _VER_     |cbofs                       |ALL     | YMD   |  7days
+nosofs      | _VER_     |ciofs                       |ALL     | YMD   |  7days
+nosofs      | _VER_     |creofs                      |ALL     | YMD   |  7days
+nosofs      | _VER_     |dbofs                       |ALL     | YMD   |  7days
+nosofs      | _VER_     |gomofs                      |ALL     | YMD   |  7days
+nosofs      | _VER_     |leofs                       |ALL     | YMD   |  7days
+nosofs      | _VER_     |lmhofs                      |ALL     | YMD   |  7days
+nosofs      | _VER_     |loofs                       |ALL     | YMD   |  7days
+nosofs      | _VER_     |lsofs                       |ALL     | YMD   |  7days
+nosofs      | _VER_     |ngofs2                      |ALL     | YMD   |  7days
+nosofs      | _VER_     |sfbofs                      |ALL     | YMD   |  7days
+nosofs      | _VER_     |tbofs                       |ALL     | YMD   |  7days
+nosofs      | _VER_     |wcofs                       |ALL     | YMD   |  7days
+nosofs      | _VER_     |wcofs_da                    |ALL     | YMD   |  7days
+nosofs      | _VER_     |wcofs_free                  |ALL     | YMD   |  7days
+nwm         | _VER_     |nwm                         |ALL     | YMD   | 11days
+nwm         | _VER_     |nwm.grib2netcdf/cfs         |ALL     | YMD   |  5days
+nwm         | _VER_     |nwm.grib2netcdf/gfs         |ALL     | YMD   |  5days
+nwm         | _VER_     |nwm.grib2netcdf/hrrr        |ALL     | YMD   |  5days
+nwm         | _VER_     |nwm.grib2netcdf/rap         |ALL     | YMD   |  5days
+nwm         | _VER_     |nwm.grib2netcdf/nam         |ALL     | YMD   |  5days
+nwm         | _VER_     |nwm.grib2netcdf/hiresw      |ALL     | YMD   |  5days
+nwm         | _VER_     |nwm.grib2netcdf/logs        |ALL     | YMD   |  5days
+nwps        | _VER_     |ar                          |ALL     | YMD   |  6days
+nwps        | _VER_     |er                          |ALL     | YMD   |  6days
+nwps        | _VER_     |ofs                         |ALL     | YMD   |  6days
+nwps        | _VER_     |pr                          |ALL     | YMD   |  6days
+nwps        | _VER_     |sr                          |ALL     | YMD   |  6days
+nwps        | _VER_     |wr                          |ALL     | YMD   |  6days
+nwps        | _VER_     |nwps                        |ALL     | YMD   |  6days
+nwps        | _VER_     |psurge                      |ALL     | YMD   |  6days
+nwps        | _VER_     |estofs                      |ALL     | YMD   |  1days
+nwps        | _VER_     |rtofs                       |ALL     | YMD   |  1days
+nwps        | _VER_     |aer                         |ALL     | YMD   |  1days
+nwps        | _VER_     |afg                         |ALL     | YMD   |  1days
+nwps        | _VER_     |ajk                         |ALL     | YMD   |  1days
+nwps        | _VER_     |akq                         |ALL     | YMD   |  1days
+nwps        | _VER_     |alu                         |ALL     | YMD   |  1days
+nwps        | _VER_     |box                         |ALL     | YMD   |  1days
+nwps        | _VER_     |bro                         |ALL     | YMD   |  1days
+nwps        | _VER_     |car                         |ALL     | YMD   |  1days
+nwps        | _VER_     |chs                         |ALL     | YMD   |  1days
+nwps        | _VER_     |crp                         |ALL     | YMD   |  1days
+nwps        | _VER_     |eka                         |ALL     | YMD   |  1days
+nwps        | _VER_     |gum                         |ALL     | YMD   |  1days
+nwps        | _VER_     |gyx                         |ALL     | YMD   |  1days
+nwps        | _VER_     |hfo                         |ALL     | YMD   |  1days
+nwps        | _VER_     |hgx                         |ALL     | YMD   |  1days
+nwps        | _VER_     |ilm                         |ALL     | YMD   |  1days
+nwps        | _VER_     |jax                         |ALL     | YMD   |  1days
+nwps        | _VER_     |key                         |ALL     | YMD   |  1days
+nwps        | _VER_     |lch                         |ALL     | YMD   |  1days
+nwps        | _VER_     |lix                         |ALL     | YMD   |  1days
+nwps        | _VER_     |lox                         |ALL     | YMD   |  1days
+nwps        | _VER_     |lwx                         |ALL     | YMD   |  1days
+nwps        | _VER_     |mfl                         |ALL     | YMD   |  1days
+nwps        | _VER_     |mfr                         |ALL     | YMD   |  1days
+nwps        | _VER_     |mhx                         |ALL     | YMD   |  1days
+nwps        | _VER_     |mlb                         |ALL     | YMD   |  1days
+nwps        | _VER_     |mob                         |ALL     | YMD   |  1days
+nwps        | _VER_     |mtr                         |ALL     | YMD   |  1days
+nwps        | _VER_     |okx                         |ALL     | YMD   |  1days
+nwps        | _VER_     |phi                         |ALL     | YMD   |  1days
+nwps        | _VER_     |pqr                         |ALL     | YMD   |  1days
+nwps        | _VER_     |sew                         |ALL     | YMD   |  1days
+nwps        | _VER_     |sgx                         |ALL     | YMD   |  1days
+nwps        | _VER_     |sju                         |ALL     | YMD   |  1days
+nwps        | _VER_     |tae                         |ALL     | YMD   |  1days
+nwps        | _VER_     |tbw                         |ALL     | YMD   |  1days
+obsproc     | _VER_     |cdas                        |ALL     | YMD   |  7days
+obsproc     | _VER_     |dump                        |ALL     | YMD   |  7days
+obsproc     | _VER_     |gdas                        |ALL     | YMD   |  7days
+obsproc     | _VER_     |gfs                         |ALL     | YMD   |  7days
+obsproc     | _VER_     |hourly                      |ALL     | YMD   |  7days
+obsproc     | _VER_     |mods                        |ALL     | YMD   |  7days
+obsproc     | _VER_     |nam                         |ALL     | YMD   |  7days
+obsproc     | _VER_     |rap                         |ALL     | YMD   |  7days
+obsproc     | _VER_     |rap_e                       |ALL     | YMD   |  7days
+obsproc     | _VER_     |rap_p                       |ALL     | YMD   |  7days
+obsproc     | _VER_     |rtma                        |ALL     | YMD   |  7days
+obsproc     | _VER_     |rtma_ru                     |ALL     | YMD   |  7days
+obsproc     | _VER_     |urma                        |ALL     | YMD   |  7days
+obsproc     | _VER_     |sdm_rtdm/dump/obcount_30day/dump|ALL     | YMD   | 33days
+obsproc     | _VER_     |sdm_rtdm/gfs/obcount_30day/gdas |ALL     | YMD   | 33days
+obsproc     | _VER_     |sdm_rtdm/gfs/obcount_30day/gfs  |ALL     | YMD   | 33days
+obsproc     | _VER_     |sdm_rtdm/nam/obcount_30day/nam  |ALL     | YMD   | 33days
+obsproc     | _VER_     |sdm_rtdm/rap/obcount_30day/rap  |ALL     | YMD   | 33days
+obsproc     | _VER_     |sdm_rtdm/rtma/obcount_30day/rtma|ALL     | YMD   | 33days
+obsproc     | _VER_     |sdm_rtdm/urma/obcount_30day/urma|ALL     | YMD   | 33days
+seaice_drift| _VER_     |seaice_drift                |ALL     | YMD   |  7days
+seaice_analysis| _VER_  |seaice_analysis             |ALL     | YMD   |  7days
+pcpanl      | _VER_     |pcpanl                      |ALL     | YMD   | 15days
+pcpanl      | _VER_     |pcpurma                     |ALL     | YMD   | 15days
+petss       | _VER_     |petss                       |ALL     | YMD   |  6days
+petss       | _VER_     |etss                        |ALL     | YMD   |  6days
+psurge      | _VER_     |psurge                      |ALL     | YMD   | 15days
+rap         | _VER_     |rap                         |ALL     | YMD   |  6days
+rap         | _VER_     |rap_p                       |ALL     | YMD   |  6days
+rap         | _VER_     |nwges                       |ALL     | FIXED |  3days
+rcdas       | _VER_     |rcdas                       |ALL     | YMD   | 11days
+rtdm        | _VER_     |gds                         |ALL     | YMD   |  2days
+rtdm        | _VER_     |gfs                         |ALL     | YMD   |  2days
+rtdm        | _VER_     |hourly                      |ALL     | YMD   |  5days
+rtdm        | _VER_     |nam                         |ALL     | YMD   |  2days
+rtdm        | _VER_     |rap                         |ALL     | YMD   |  5days
+rtma        | _VER_     |akrtma                      |ALL     | YMD   |  5days
+rtma        | _VER_     |gurtma                      |ALL     | YMD   |  5days
+rtma        | _VER_     |hirtma                      |ALL     | YMD   |  5days
+rtma        | _VER_     |prrtma                      |ALL     | YMD   |  5days
+rtma        | _VER_     |rtma2p5                     |ALL     | YMD   |  7days
+rtma        | _VER_     |rtma2p5_ru                  |ALL     | YMD   |  5days
+rtma        | _VER_     |pcprtma                     |ALL     | YMD   | 11days
+rtma        | _VER_     |nwges/akrtma                |ALL     | YMD   |  3days
+rtma        | _VER_     |nwges/gurtma                |ALL     | YMD   |  3days
+rtma        | _VER_     |nwges/hirtma                |ALL     | YMD   |  3days
+rtma        | _VER_     |nwges/prrtma                |ALL     | YMD   |  3days
+rtma        | _VER_     |nwges/rtma2p5               |ALL     | YMD   |  3days
+rtma        | _VER_     |nwges/rtma2p5_ru            |ALL     | YMD   |  3days
+rtofs       | _VER_     |rtofs                       |ALL     | YMD   |  7days
+rtofs       | _VER_     |nwges/rtofs                 |ALL     | YMD   |  7days
+sfcship     | _VER_     |sfcship                     |ALL     | YMD   |  7days
+smartinit   | _VER_     |nam                         |ALL     | YMD   |  8days
+spc_post    | _VER_     |spc_post                    |ALL     | YMD   |  7days
+spcsref     | _VER_     |spcsref                     |ALL     | YMD   |  7days
+sref        | _VER_     |sref                        |ALL     | YMD   | 10days
+sref        | _VER_     |nwges/sref                  |ALL     | YMD   |  3days
+thanks      | _VER_     |thanks                      |ALL     | SUBYMD| 63days
+ukmet       | _VER_     |ukmet                       |ALL     | YMD   | 10days
+urma        | _VER_     |akurma                      |ALL     | YMD   |  6days
+urma        | _VER_     |hiurma                      |ALL     | YMD   |  6days
+urma        | _VER_     |pcpurma                     |ALL     | YMD   | 11days
+urma        | _VER_     |prurma                      |ALL     | YMD   |  6days
+urma        | _VER_     |urma                        |ALL     | YMD   | 11days
+urma        | _VER_     |urma2p5                     |ALL     | YMD   |  6days
+urma        | _VER_     |nwges/akurma                |ALL     | YMD   |  3days
+urma        | _VER_     |nwges/hiurma                |ALL     | YMD   |  3days
+urma        | _VER_     |nwges/prurma                |ALL     | YMD   |  3days
+urma        | _VER_     |nwges/urma2p5               |ALL     | YMD   |  3days
+uvi         | _VER_     |uvi                         |ALL     | YMD   |  6days
+verf_g2g    | _VER_     |cloud                       |ALL     | YMD   |  8days
+verf_g2g    | _VER_     |dust                        |ALL     | YMD   |  8days
+verf_g2g    | _VER_     |ens                         |ALL     | YMD   | 15days
+verf_g2g    | _VER_     |etop                        |ALL     | YMD   |  8days
+verf_g2g    | _VER_     |firewx                      |ALL     | YMD   |  8days
+verf_g2g    | _VER_     |href                        |ALL     | YMD   |  8days
+verf_g2g    | _VER_     |reflt                       |ALL     | YMD   |  8days
+verf_g2g    | _VER_     |urma                        |ALL     | YMD   |  8days
+verf_g2g    | _VER_     |vsdb                        |ALL     | FIXED | 40days
+verf_gridtobs | _VER_   |verf_gridtobs               |ALL     | YMD   |  8days
+verf_gridtobs | _VER_   |vsdb/gridtobs               |ALL     | FIXED | 40days
+verf_precip | _VER_     |href_apcp                   |ALL     | YMD   |  8days
+verf_precip | _VER_     |precip                      |ALL     | YMD   | 14days
+verf_precip | _VER_     |vsdb                        |ALL     | FIXED | 40days
+wave_nfcens | _VER_     |nfcens                      |ALL     | YMD   | 11days
+wfs         | _VER_     |wdas                        |ALL     | YMD   |  3days
+wfs         | _VER_     |wfs                         |ALL     | YMD   |  3days
+wfs         | _VER_     |wrs                         |ALL     | YMD   |  3days
+wsa_enlil   | _VER_     |wsa_enlil                   |ALL     | YMD   |  7days
+wsa_enlil   | _VER_     |wsa_enlil                   |ALL     | FIXED | 40days
+wsr         | _VER_     |wsr                         |ALL     | YMD   |  7days
