@@ -7,6 +7,7 @@
 #----------|------------------------|---|---|---|---|---|---|----------|
 nco_mag    |${clean_envir}_data/gefs-mean-sprd| 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/gefs-spag     | 2 | 2 | 2 | 2 | 2 | 2 |
+nco_mag    |${clean_envir}_data/gefs-wave     | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/gfs           | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/gfs-snd       | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/gfs-wave      | 2 | 2 | 2 | 2 | 2 | 2 |
@@ -16,10 +17,10 @@ nco_mag    |${clean_envir}_data/nbm           | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/storm-tracks  | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/hrw-fv3       | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/hrw-nmmb      | 2 | 2 | 2 | 2 | 2 | 2 |
-nco_mag    |${clean_envir}_data/hwrf-full     | 2 | 2 | 2 | 2 | 2 | 2 |
-nco_mag    |${clean_envir}_data/hwrf-nested   | 2 | 2 | 2 | 2 | 2 | 2 |
-nco_mag    |${clean_envir}_data/hmon-full     | 2 | 2 | 2 | 2 | 2 | 2 |
-nco_mag    |${clean_envir}_data/hmon-nested   | 2 | 2 | 2 | 2 | 2 | 2 |
+nco_mag    |${clean_envir}_data/hfsa-parent   | 2 | 2 | 2 | 2 | 2 | 2 |
+nco_mag    |${clean_envir}_data/hfsa-nested   | 2 | 2 | 2 | 2 | 2 | 2 |
+nco_mag    |${clean_envir}_data/hfsb-parent   | 2 | 2 | 2 | 2 | 2 | 2 |
+nco_mag    |${clean_envir}_data/hfsb-nested   | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/naefs         | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/nam           | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/nam-snd       | 2 | 2 | 2 | 2 | 2 | 2 |
@@ -31,6 +32,7 @@ nco_mag    |${clean_envir}_data/rtma-guam     | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/skewt         | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/sref          | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/sref-cluster  | 2 | 2 | 2 | 2 | 2 | 2 |
+nco_mag    |${clean_envir}_data/stofs         | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/uair          | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/ww3           | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/ww3-enp       | 2 | 2 | 2 | 2 | 2 | 2 |
@@ -40,4 +42,4 @@ nco_mag    |${clean_envir}_data/estofs        | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/firewx        | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/href          | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/ice-drift     | 2 | 2 | 2 | 2 | 2 | 2 |
-hysplit    |htdocs/${clean_envir}             | 181 | 181 | 10 | 10 | 10 | 10 | 366 | 366 |
+
