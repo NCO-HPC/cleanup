@@ -84,7 +84,7 @@ godas       | _VER_     |godas                       |ALL     | YMD   | 32days
 godas       | _VER_     |godas2                      |ALL     | YMD   | 32days
 godas       | _VER_     |godas_ext                   |ALL     | YMD   | 32days
 gpspw       | _VER_     |gpspw                       |ALL     | YMD   |  7days
-hiresw      | _VER_     |hiresw                      |ALL     | YMD   |  6days
+hiresw      | _VER_     |hiresw                      |ALL     | YMD   |  7days
 href        | _VER_     |href                        |ALL     | YMD   |  6days
 href        | _VER_     |nwges/href                  |ALL     | YMD   |  6days
 cpg         | _VER_     |cpg                         |ALL     | YMD   |  6days
