@@ -21,6 +21,7 @@ nco_mag    |${clean_envir}_data/hfsa-parent   | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/hfsa-nested   | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/hfsb-parent   | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/hfsb-nested   | 2 | 2 | 2 | 2 | 2 | 2 |
+nco_mag    |${clean_envir}_data/atcf          | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/naefs         | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/nam           | 2 | 2 | 2 | 2 | 2 | 2 |
 nco_mag    |${clean_envir}_data/nam-snd       | 2 | 2 | 2 | 2 | 2 | 2 |
