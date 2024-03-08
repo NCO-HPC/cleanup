@@ -16,6 +16,12 @@ hfsb.*_PDYm5_.*
 hfsb.*_PDYm6_.*
 hfsb.*_PDYm7_.*
 hfsb.*_PDYm8_.*
+atcf.*_PDYm3_.*
+atcf.*_PDYm4_.*
+atcf.*_PDYm5_.*
+atcf.*_PDYm6_.*
+atcf.*_PDYm7_.*
+atcf.*_PDYm8_.*
 transfer_A/.*_PDYp1_.*
 transfer_A/.*_PDY_.*
 transfer_A/.*_PDYm1_.*
