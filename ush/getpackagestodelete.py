@@ -12,18 +12,25 @@ envir = os.getenv("envir")
 assert envir in ["prod","para","test"], f"ERROR: $envir ({envir}) is not defined to an acceptable value. Quitting..."
 
 HOMEcleanup = os.getenv("HOMEcleanup")
+wlist_ecflow = os.getenv("wlist_ecflow")
 assert HOMEcleanup, "$HOMEcleanup not defined! Quitting..."
 package_whitelist_file = f"{HOMEcleanup}/parm/package_whitelist_file"
 package_whitelist = collections.defaultdict(list)
 if os.path.exists(package_whitelist_file):
+  if len(wlist_ecflow) != 0:
+    for vers in wlist_ecflow.split(","):
+      vers=vers.replace("."," ",1)
+      parts=vers.split()
+      assert len(parts)==2, f"Wrong format for ecFlow whitelist {wlist_ecflow}! Quitting..."
+      package_whitelist[parts[0]].append(parts[1])
   for line in open(package_whitelist_file,"r").readlines():
     if re.match("^\s*#",line): continue
     parts = line.split()
     assert len(parts)==2, f"Wrong format for whitelist file {package_whitelist_file}! Quitting..."
-#    package_whitelist[parts[0]] = parts[1]
     package_whitelist[parts[0]].append(parts[1])
 else:
-  print(f"WARNING: No package whitelist file found at path {package_whitelist_file}",file=sys.stderr)
+  print(f"ERROR: No package whitelist file found at path {package_whitelist_file}",file=sys.stderr)
+  assert os.path.exists(package_whitelist_file), f"Whitelist does not exist, Quitting cleanup ..."
 
 PACKAGEROOT = sys.argv[1]
 assert os.path.exists(PACKAGEROOT), f"$PACKAGEROOT {PACKAGEROOT} does not exist! Quitting..."
@@ -47,7 +54,7 @@ ALL_VER_VARS = collections.defaultdict(set)
 # WW 20220310 - exclude model_ver from transfer jobs
 for node in suite.get_all_nodes():
   for variable in node.variables:
-    if variable.name().endswith("_ver") and not variable.name().startswith("model"): 
+    if variable.name().endswith("_ver") and not variable.name().startswith("model"):
       ALL_VER_VARS[variable.name()].add(variable.value())
 
 oldpackagepaths = []
@@ -62,9 +69,10 @@ for ver_var in ALL_VER_VARS.keys():
   for path in existingpackagepaths:
     thispackageversion = re.sub(f"{PACKAGEROOT}/?{packagename}.([^/]+)/",r"\1",path)
     if not re.match("v\d+\.(\d+\.)*\d+[a-z]*",thispackageversion):
-      print(f"WARNING: the package name of path {path} is incorrectly formatted, and will never be cleaned up!")
+      print(f"WARNING: the package name of path {path} is incorrectly formatted, and will never be cleaned up!",file=sys.stderr)
       continue
-    if (str(LooseVersion(thispackageversion))<str(oldestecfversion)) and (thispackageversion not in package_whitelist[packagename]):
+#    if (str(LooseVersion(thispackageversion))<str(oldestecfversion)) and (thispackageversion not in package_whitelist[packagename]):
+    if (LooseVersion(str(thispackageversion)) < LooseVersion(str(oldestecfversion))) and (thispackageversion not in package_whitelist[packagename]):
       oldpackagepaths += [path]
 
 for package in os.listdir(PACKAGEROOT):

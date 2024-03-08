@@ -7,8 +7,8 @@
 #   2) Thin com/ directories
 #   3) Clean tmp/
 #   4) Clean dcom/
-#   5) Clean packages/
-#   6) Package up and clean com/output/
+#   5) Package up and clean com/output/
+#   6) Clean packages/
 ################################################################################
 postmsg "$jlogfile" "$0 has begun"
 
@@ -38,7 +38,7 @@ if [ $cleanup_com == YES ]; then
             MODELCOMROOT="/lfs/h1/ops/${envir}/com" # separate with vertical pipes when adding new comroots
         fi
         echo " * NET=$NET RUN=$RUN MODELCOMROOT=$MODELCOMROOT KEEPTIME=$KEEPTIME TYPE=$TYPE"
-    
+
         for comroot in $MODELCOMROOT; do
             version_list=$(ls $comroot/$NET | awk -F"/" '{print $NF}')
             while read -r veri; do
@@ -90,7 +90,7 @@ if [ $thin_com == YES ]; then # SENDCOM check is in cleanup_thindir.sh
 	      sed "s,$SHORTVER,$veri,g" $thinfile > $v_thinfile
 	      if [[ "$thinfile" =~ _keep.list ]]; then  # use rm instead of rsync
                 export pgm=${USHcleanup:?}/cleanup_thindir_rmfiles.sh
-	      else 
+	      else
 	        export pgm=${USHcleanup:?}/cleanup_thindir.sh
 	      fi
               echo "Proccessing the version based  '$v_thinfile'"
@@ -105,7 +105,7 @@ fi
 
 ################################################################################
 # 3. Remove working directories/files older than one day.
-#    Dec 2011 - Changed from mtime to ctime to avoid premature cleanup of 
+#    Dec 2011 - Changed from mtime to ctime to avoid premature cleanup of
 #    files added via 'cp -p'.
 ################################################################################
 if [[ "${thin_tmp^^}" == YES && "$SENDCOM" == YES ]]; then
@@ -145,38 +145,7 @@ elif [ "$cleanup_dcom" == YES ]; then
 fi
 
 #########################################################################
-# 5. Clean packages/
-#########################################################################
-if [ $cleanup_packages == YES ]; then
-    date
-    echo "Cleaning packages/ (PACKAGEROOT=$PACKAGEROOT)"
-    $USHcleanup/getpackagestodelete.py ${PACKAGEROOT:-/lfs/h1/ops/$envir/packages} > $DATA/packagepathstodelete 2> $DATA/packagewarnings
-    export err=$? ; pgm=getpackagestodelete.py err_chk "getpackagestodelete.py error"
-    if [ $(grep -c . $DATA/packagewarnings) -gt 0 ]; then
-        sed -i "1 iThe following warnings were encountered in package cleanup for PACKAGEROOT=$PACKAGEROOT envir=$envir PDY=$PDY PBS_JOBID=$PBS_JOBID\n" $DATA/packagewarnings
-    fi
-    if [ $(grep -c . $DATA/packagepathstodelete) -gt 0 ]; then
-        echo -e "\n\nThe folloing packages will be deleted.\n" >> $DATA/packagewarnings
-    fi
-    set -x
-    for packagepathtodelete in $(cat packagepathstodelete) ; do
-	brspath=$(echo $packagepathtodelete | sed  "s/\/packages/\/brs\/packages/")
-	if [[ $SENDCOM == YES && -d "$brspath" ]]; then
-        #    rm -rf $packagepathtodelete
-     	    echo "(TEST ONLY) $packagepathtodelete DELETED." >> $DATA/packagewarnings
-	elif [ ! -d "$brspath" ]; then
-            echo "NO BRS BACKUP FOUND FOR $packagepathtodelete. SKIP..." >> $DATA/packagewarnings
-        else
-            echo "WOULD HAVE DELETED $packagepathtodelete"
-        fi
-    done
-    if [ $(grep -c . $DATA/packagewarnings) -gt 0 ]; then
-        mail.py -s "$envir cleanup: package warnings ($jobid)" $MAILTO < $DATA/packagewarnings
-    fi
-fi
-
-#########################################################################
-# 6. Package up output/ directories and remove old ones
+# 5. Package up output/ directories and remove old ones
 #########################################################################
 if [[ $SENDCOM != YES || $cleanup_output != YES ]]; then
     postmsg "$jlogfile" "$0 has completed"
@@ -206,5 +175,54 @@ for dirfullpath in $(ls -d $OUTPUTROOT/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])
     # DELETE:
     if [ -f $tarfullpath ]; then rm -rf $dirfullpath; fi
 done
+
+#########################################################################
+# 6. Clean packages/
+#########################################################################
+if [[ $cleanup_packages == YES && ${day,,} == monday ]]; then
+    date
+    echo "Cleaning packages/ (PACKAGEROOT=$PACKAGEROOT)"
+    $USHcleanup/getpackagestodelete.py ${PACKAGEROOT:-/lfs/h1/ops/$envir/packages} > $DATA/packagepathstodelete 2> $DATA/packagewarnings
+    export err=$? ; pgm=getpackagestodelete.py err_chk "getpackagestodelete.py error, $(cat $DATA/packagewarnings)"
+    if [ $(grep -c . $DATA/packagepathstodelete) -gt 0 ]; then
+        echo -e "\nThe following packages have been deleted: \n" > $DATA/packagedeletions
+    fi
+    for packagepathtodelete in $(cat packagepathstodelete) ; do
+	brspath=$(echo $packagepathtodelete | sed  "s/\/packages/\/brs\/packages/")
+	if [[ $SENDCOM == YES && -d "$brspath" ]]; then
+            if [[ ${envir} == prod ]]; then
+                rm -rf $packagepathtodelete
+         	echo "OLD PRODUCTION PACKAGE - $packagepathtodelete DELETED." >> $DATA/packagewarnings
+            elif [[ ${envir} == para ]]; then
+                echo "(${envir^^} TEST ONLY) $packagepathtodelete DELETED." >> $DATA/packagewarnings
+            else
+                echo "(${envir^^} TEST ONLY) $packagepathtodelete DELETED." >> $DATA/packagewarnings
+            fi
+	elif [[ ! -d "$brspath" && ${envir} == prod ]]; then
+            echo "NO BRS BACKUP FOUND FOR $packagepathtodelete. SKIP..." >> $DATA/packagedeletions
+	elif [[ ! -d "$brspath" && ${envir} == para ]]; then
+            echo "NO BRS BACKUP FOUND FOR $packagepathtodelete. SKIP..." >> $DATA/packagewarnings
+        else
+            echo "WOULD HAVE DELETED $packagepathtodelete." >> $DATA/packagewarnings
+        fi
+    done
+    if [[ $(grep -c . $DATA/packagedeletions) -gt 1 && ${envir} == prod ]]; then
+        mail.py -s "$envir cleanup: package warnings ($jobid)" $MAILTO < $DATA/packagedeletions
+    fi
+    if [ $(grep -c . $DATA/packagewarnings) -gt 0 ]; then
+    	set +x
+        echo -ne "=================WARNINGS: PACKAGEROOT=$PACKAGEROOT envir=$envir PDY=$PDY PBS_JOBID=$PBS_JOBID: ==========================\n"
+        cat $DATA/packagewarnings | sort -r
+        echo -ne "==========================================================================================================================\n"
+	set -x
+    fi
+
+    # Send deleted paths to ecFlow label
+    ecflow_client --label cleanup_packages "$(cat $DATA/packagedeletions)" ${ECF_NAME} --port=${ECF_PORT}
+else
+    echo -ne "\n==========================================================================================================================\n"
+    echo "Skipping package cleanup.  Cleanup runs on Mondays and when \$cleanup_packages is set to YES."
+    echo -ne "==========================================================================================================================\n"
+fi
 
 postmsg "$jlogfile" "$0 has completed"
