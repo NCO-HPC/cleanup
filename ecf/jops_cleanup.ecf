@@ -14,6 +14,8 @@ module load python/$python_ver
 module load util_shared/$util_shared_ver
 
 export cyc=%CYC%
+export day=%DAY%
+export wlist_ecflow="%WHITELIST%"
 
 ${HOMEcleanup}/jobs/JOPS_CLEANUP
 
@@ -21,5 +23,6 @@ ${HOMEcleanup}/jobs/JOPS_CLEANUP
 
 %manual
 Purpose: Cleans up com, dcom, tmp, and packages directories.
+Variable Requirement: WHITELIST (blank or model.v1.2.3,model.v2.4.2)
 %end
 

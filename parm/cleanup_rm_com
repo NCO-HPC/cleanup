@@ -30,6 +30,7 @@
 aqm         | _VER_     |ak                          |ALL     | YMD   | 11days
 aqm         | _VER_     |hi                          |ALL     | YMD   | 11days
 aqm         | _VER_     |cs                          |ALL     | YMD   | 11days
+aqm         | _VER_     |aqm                         |ALL     | YMD   | 11days
 aqm         | _VER_     |bcdata                      |ALL     | YM    |457days
 baseline    | _VER_     |baseline                    |ALL     | YMD   |  5days
 baseline    | _VER_     |gefs                        |ALL     | YMD   |  5days
