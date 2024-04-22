@@ -86,6 +86,9 @@ if [ $thin_com == YES ]; then # SENDCOM check is in cleanup_thindir.sh
 	    cd $(basename $thinfile)
 	    echo $thinfile
             while read -r veri; do
+              COM=$(compath.py --envir=$envir $NET/$veri/$RUN)
+              err=$?
+              if [ $err -ne 0 ]; then continue; fi
 	      v_thinfile=${veri}_$(basename $thinfile)
 	      sed "s,$SHORTVER,$veri,g" $thinfile > $v_thinfile
 	      if [[ "$thinfile" =~ _keep.list ]]; then  # use rm instead of rsync
