@@ -260,6 +260,7 @@ nosofs      | _VER_     |loofs                       |ALL     | YMD   |  7days
 nosofs      | _VER_     |lsofs                       |ALL     | YMD   |  7days
 nosofs      | _VER_     |ngofs2                      |ALL     | YMD   |  7days
 nosofs      | _VER_     |sfbofs                      |ALL     | YMD   |  7days
+nosofs      | _VER_     |sscofs                      |ALL     | YMD   |  7days
 nosofs      | _VER_     |tbofs                       |ALL     | YMD   |  7days
 nosofs      | _VER_     |wcofs                       |ALL     | YMD   |  7days
 nosofs      | _VER_     |wcofs_da                    |ALL     | YMD   |  7days
